@@ -37,10 +37,9 @@ PBJ-AI/
 ├── README.md                                  this file
 ├── AI Technical Evalution/                    the Claude skill (folder name is spelled this way)
 │   ├── README.md                              detailed skill guide (written for v19)
-│   ├── evaluate-tech-spec-v26_SKILL.md        CURRENT skill
-│   ├── evaluate-tech-spec-v19_SKILL.md        previous release (concise finding-only notes)
-│   ├── eval-tech-spec-v13.md                  token-lean version with bidder-facing sheet
-│   ├── eval-tech-spec-v10.md                  full reference version with category modules
+│   ├── VERSIONS.md                            version history and numbering rules
+│   ├── evaluate-tech-spec_v4.4.0_SKILL.md     CURRENT skill (claude.ai name: evaluate-tech-spec-v27)
+│   ├── evaluate-tech-spec_v1.0.0 … v4.3.0     every earlier version (v1–v26), named MAJOR.MINOR.PATCH
 │   └── Technical Evaluation with Claude.pdf   presentation / walkthrough
 └── LocalEvaluator/                            the offline Excel add-in
     ├── READ ME FIRST.txt                      end-user instructions (shipped in the package)
@@ -128,7 +127,7 @@ The detailed guide is [`AI Technical Evalution/README.md`](AI%20Technical%20Eval
 1. Create a folder whose name matches the `name:` in the skill file, and save the file in it as `SKILL.md`:
    ```
    evaluate-tech-spec-v26/
-   └── SKILL.md        (copy of evaluate-tech-spec-v26_SKILL.md)
+   └── SKILL.md        (copy of evaluate-tech-spec_v4.3.0_SKILL.md)
    ```
 2. ZIP the folder.
 3. In claude.ai: **Customize › Skills › + › Create skill › Upload a skill**, upload the ZIP and switch it on.
@@ -201,16 +200,14 @@ On a rerun, cells that look hand-edited are listed and Claude asks once before o
 
 ### Version history
 
-| Version | Change |
-|---|---|
-| v1–v5 | Sheet-only evaluation → document checks with REFERENCE → all bidders → clarification file → clarification sheets in the workbook |
-| v6–v9 | Dynamic profiling for any package; Google Drive REFERENCE links (evaluator's own copies only); materiality test, decision matrix, cross-bidder consistency |
-| v10 | `Meet / Not Meet` labels, basis tags, category modules for every procurement type, Relabel mode ([file](AI%20Technical%20Evalution/eval-tech-spec-v10.md)) |
-| v11–v13 | Mandatory gated AMPC clarification; token-lean workflow; P/F-scored sheets; bidder-facing clarification sheet ([file](AI%20Technical%20Evalution/eval-tech-spec-v13.md)) |
-| v14–v16 | Only coloured column-B rows evaluated; white P/F rows get V = P and are never clarified |
-| v17–v18 | Evidence-strict: classes A–D; self-claims never prove device capability; navigation markers are not red flags |
-| v19 | Concise, finding-only notes; markers ignored silently; Tidy notes mode ([file](AI%20Technical%20Evalution/evaluate-tech-spec-v19_SKILL.md)) |
-| v20–v26 | One undated AI Evaluation column set per bidder (human columns never touched); plain-language bilingual notes (English black, Indonesian blue); numbered "file name - Drive link" references; per-bidder AMPC sheets with a PC Assessment column; byte-verified export to the workbook's Drive folder, with `move` ([file](AI%20Technical%20Evalution/evaluate-tech-spec-v26_SKILL.md)) |
+Skill files are numbered MAJOR.MINOR.PATCH. The full list, with the former vN name of each file and the numbering rules, is in [VERSIONS.md](AI%20Technical%20Evalution/VERSIONS.md).
+
+| Version | Former names | Change |
+|---|---|---|
+| 1.x ([1.0.0](AI%20Technical%20Evalution/evaluate-tech-spec_v1.0.0_SKILL.md)–[1.7.0](AI%20Technical%20Evalution/evaluate-tech-spec_v1.7.0_SKILL.md)) | v1–v9 | `Comply / Not Comply` labels. Sheet-only evaluation → document checks with REFERENCE → all bidders → clarification files and sheets; dynamic profiling for any package; Google Drive REFERENCE links (evaluator's own copies only); materiality test, decision matrix, cross-bidder consistency |
+| 2.x ([2.0.0](AI%20Technical%20Evalution/evaluate-tech-spec_v2.0.0_SKILL.md)–[2.9.1](AI%20Technical%20Evalution/evaluate-tech-spec_v2.9.1_SKILL.md)) | v10–v21 | `Meet / Not Meet` labels, category modules; gated AMPC clarification; token-lean workflow; P/F-scored sheets; bidder-facing sheet; coloured column-B rows only (white P/F rows V = P); evidence-strict classes A–D; finding-only notes; AMPC guidance questions |
+| 3.0.0 ([file](AI%20Technical%20Evalution/evaluate-tech-spec_v3.0.0_SKILL.md)) | v22 | Each rerun adds a new dated evaluator column set instead of overwriting |
+| 4.x ([4.0.0](AI%20Technical%20Evalution/evaluate-tech-spec_v4.0.0_SKILL.md)–[4.4.0](AI%20Technical%20Evalution/evaluate-tech-spec_v4.4.0_SKILL.md)) | v23–v27 | One undated AI Evaluation column set per bidder (human columns never touched); plain-language bilingual notes (English black, Indonesian blue); numbered "file name - Drive link" references; per-bidder AMPC sheets on the AMPC Technical Clarification template; byte-verified export to the workbook's Drive folder, with `move` |
 
 ---
 
@@ -409,7 +406,7 @@ Follow your organisation's policy before uploading tender documents to any AI se
 
 Improvements come from real evaluation work.
 
-- **Skill:** add a new `evaluate-tech-spec-vNN_SKILL.md` (don't edit released versions), with a matching `name: evaluate-tech-spec-vNN` in the front matter, and add a row to the version history above.
+- **Skill:** add a new `evaluate-tech-spec_vMAJOR.MINOR.PATCH_SKILL.md` (don't edit released versions), numbered by the rules in [VERSIONS.md](AI%20Technical%20Evalution/VERSIONS.md). Keep `name: evaluate-tech-spec-vNN` (the next claude.ai skill name) in the front matter, and add a row to VERSIONS.md.
 - **Local Evaluator:** keep the add-in version in `manifest.xml` and `launcher.py` fixed at `1.0.0.0` (attached workbooks refer to it). Run the tests, then `build_package.ps1`.
 - Use only fictional bidders and documents in examples and tests.
 
