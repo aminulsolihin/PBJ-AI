@@ -1,0 +1,40 @@
+LOCAL EVALUATOR - offline bid-evaluation add-in for Excel
+=========================================================
+
+WHAT YOU NEED
+  - Windows 10 or 11
+  - Desktop Excel (2016 or later, or Microsoft 365)
+  - 16 GB of memory or more
+  - About 8 GB of free disk space
+  - Internet for the setup only. Afterwards the add-in works offline.
+
+INSTALL (one click)
+  1. Put this whole folder at  C:\LocalEvaluator
+     (unzip the package to C:\ and the folder appears there).
+  2. Double-click  Install.cmd
+  3. Setup lists what it will download (Python, Ollama, the local model, if they are missing).
+     Type Y and press Enter.
+  4. When Windows asks whether to trust "Local Evaluator (this computer only)", choose Yes.
+     The question can open behind the setup window; look for it on the taskbar.
+  5. Wait for "Setup finished". The model download (about 6 GB) is the long part.
+
+  No administrator rights are needed. If setup stops, read its message and run Install.cmd again;
+  steps that are already done are skipped.
+
+USE
+  1. Close your evaluation workbook.
+  2. Double-click  Attach to workbook.cmd  and choose the workbook.
+     It opens with the Local Evaluator pane on the right, now and every time you open it.
+     (A backup copy of the workbook is kept the first time.)
+  3. In the pane: choose each bidder's documents folder, then Evaluate.
+  The pane's Settings has a link "How this works".
+
+GOOD TO KNOW
+  - The results are a draft from a small local model. Check every row against the documents.
+  - Each requirement takes a few minutes on a laptop without a graphics card.
+  - Keep bid documents and workbooks on a local drive, not in a cloud-synced folder.
+  - The engine starts by itself when you log in to Windows.
+
+REMOVE
+  Right-click  uninstall.ps1  > Run with PowerShell.
+  Python, Ollama and the model are left installed; remove them from Windows Settings > Apps if you wish.

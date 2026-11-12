@@ -1,0 +1,312 @@
+﻿{
+ "copy": "C:\\Users\\User\\Downloads\\Form 11 A _Lot 2_Automatic Extractor (Resume repaired - to check).xlsx",
+ "made": "copied from the workbook as it is open now (including unsaved changes)",
+ "report": {
+  "summary": "Resume",
+  "changed": [
+   {
+    "cell": "C5",
+    "number": 2,
+    "before": "#REF!",
+    "after": "Not Meet",
+    "how": "chosen requirement rows of the bidder's own block"
+   },
+   {
+    "cell": "C6",
+    "number": 3,
+    "before": "#REF!",
+    "after": "Not Meet",
+    "how": "chosen requirement rows of the bidder's own block"
+   },
+   {
+    "cell": "C7",
+    "number": 4,
+    "before": "#REF!",
+    "after": "Not Meet",
+    "how": "chosen requirement rows of the bidder's own block"
+   },
+   {
+    "cell": "C8",
+    "number": 5,
+    "before": "#REF!",
+    "after": "Not Meet",
+    "how": "chosen requirement rows of the bidder's own block"
+   },
+   {
+    "cell": "C9",
+    "number": 6,
+    "before": "Not Meet",
+    "after": "Not Meet",
+    "how": "same wiring as bidder 1"
+   },
+   {
+    "cell": "C10",
+    "number": 7,
+    "before": "#REF!",
+    "after": "Not Meet",
+    "how": "chosen requirement rows of the bidder's own block"
+   },
+   {
+    "cell": "C11",
+    "number": 8,
+    "before": "Not Meet",
+    "after": "Not Meet",
+    "how": "same wiring as bidder 1"
+   },
+   {
+    "cell": "C12",
+    "number": 9,
+    "before": "#REF!",
+    "after": "Not Meet",
+    "how": "chosen requirement rows of the bidder's own block"
+   },
+   {
+    "cell": "C13",
+    "number": 10,
+    "before": "Not Meet",
+    "after": "Not Meet",
+    "how": "same wiring as bidder 1"
+   },
+   {
+    "cell": "C14",
+    "number": 11,
+    "before": "#REF!",
+    "after": "Not Meet",
+    "how": "chosen requirement rows of the bidder's own block"
+   },
+   {
+    "cell": "C15",
+    "number": 12,
+    "before": "Not Meet",
+    "after": "Not Meet",
+    "how": "same wiring as bidder 1"
+   },
+   {
+    "cell": "C16",
+    "number": 13,
+    "before": "Not Meet",
+    "after": "Not Meet",
+    "how": "same wiring as bidder 1"
+   },
+   {
+    "cell": "C17",
+    "number": 14,
+    "before": "#REF!",
+    "after": "Not Meet",
+    "how": "chosen requirement rows of the bidder's own block"
+   },
+   {
+    "cell": "C18",
+    "number": 15,
+    "before": "Not Meet",
+    "after": "Not Meet",
+    "how": "same wiring as bidder 1"
+   },
+   {
+    "cell": "C19",
+    "number": 16,
+    "before": "#REF!",
+    "after": "Not Meet",
+    "how": "chosen requirement rows of the bidder's own block"
+   },
+   {
+    "cell": "D9",
+    "number": 6,
+    "before": "Not Meet",
+    "after": "Not Meet",
+    "how": "same wiring as bidder 2"
+   },
+   {
+    "cell": "D10",
+    "number": 7,
+    "before": "Not Meet",
+    "after": "Not Meet",
+    "how": "same wiring as bidder 2"
+   },
+   {
+    "cell": "D11",
+    "number": 8,
+    "before": "Not Meet",
+    "after": "Not Meet",
+    "how": "same wiring as bidder 2"
+   },
+   {
+    "cell": "D12",
+    "number": 9,
+    "before": "Not Meet",
+    "after": "Not Meet",
+    "how": "same wiring as bidder 2"
+   },
+   {
+    "cell": "D13",
+    "number": 10,
+    "before": "Not Meet",
+    "after": "Not Meet",
+    "how": "same wiring as bidder 2"
+   },
+   {
+    "cell": "D14",
+    "number": 11,
+    "before": "Not Meet",
+    "after": "Not Meet",
+    "how": "same wiring as bidder 2"
+   },
+   {
+    "cell": "D15",
+    "number": 12,
+    "before": "Not Meet",
+    "after": "Not Meet",
+    "how": "same wiring as bidder 2"
+   },
+   {
+    "cell": "D16",
+    "number": 13,
+    "before": "Not Meet",
+    "after": "Not Meet",
+    "how": "same wiring as bidder 2"
+   },
+   {
+    "cell": "D17",
+    "number": 14,
+    "before": "Not Meet",
+    "after": "Not Meet",
+    "how": "same wiring as bidder 2"
+   },
+   {
+    "cell": "D18",
+    "number": 15,
+    "before": "Not Meet",
+    "after": "Not Meet",
+    "how": "same wiring as bidder 2"
+   },
+   {
+    "cell": "D19",
+    "number": 16,
+    "before": "Not Meet",
+    "after": "Not Meet",
+    "how": "same wiring as bidder 2"
+   },
+   {
+    "cell": "G5",
+    "number": 2,
+    "before": "#NAME?",
+    "after": "Not Meet -",
+    "how": "same wiring as bidder 1"
+   },
+   {
+    "cell": "G6",
+    "number": 3,
+    "before": "#NAME?",
+    "after": "Not Meet -",
+    "how": "same wiring as bidder 1"
+   },
+   {
+    "cell": "G7",
+    "number": 4,
+    "before": "#NAME?",
+    "after": "Not Meet -",
+    "how": "same wiring as bidder 1"
+   },
+   {
+    "cell": "G8",
+    "number": 5,
+    "before": "#NAME?",
+    "after": "Not Meet -",
+    "how": "same wiring as bidder 1"
+   },
+   {
+    "cell": "G9",
+    "number": 6,
+    "before": "#NAME?",
+    "after": "Not Meet -",
+    "how": "same wiring as bidder 1"
+   },
+   {
+    "cell": "G10",
+    "number": 7,
+    "before": "#NAME?",
+    "after": "Not Meet -",
+    "how": "same wiring as bidder 1"
+   },
+   {
+    "cell": "G11",
+    "number": 8,
+    "before": "#NAME?",
+    "after": "Not Meet -",
+    "how": "same wiring as bidder 1"
+   },
+   {
+    "cell": "G12",
+    "number": 9,
+    "before": "#NAME?",
+    "after": "Not Meet -",
+    "how": "same wiring as bidder 1"
+   },
+   {
+    "cell": "G13",
+    "number": 10,
+    "before": "#NAME?",
+    "after": "Not Meet -",
+    "how": "same wiring as bidder 1"
+   },
+   {
+    "cell": "G14",
+    "number": 11,
+    "before": "#NAME?",
+    "after": "Not Meet -",
+    "how": "same wiring as bidder 1"
+   },
+   {
+    "cell": "G15",
+    "number": 12,
+    "before": "#NAME?",
+    "after": "Not Meet -",
+    "how": "same wiring as bidder 1"
+   },
+   {
+    "cell": "G16",
+    "number": 13,
+    "before": "#NAME?",
+    "after": "Not Meet -",
+    "how": "same wiring as bidder 1"
+   },
+   {
+    "cell": "G17",
+    "number": 14,
+    "before": "#NAME?",
+    "after": "Not Meet -",
+    "how": "same wiring as bidder 1"
+   },
+   {
+    "cell": "G18",
+    "number": 15,
+    "before": "#NAME?",
+    "after": "Not Meet -",
+    "how": "same wiring as bidder 1"
+   },
+   {
+    "cell": "G19",
+    "number": 16,
+    "before": "#NAME?",
+    "after": "Not Meet -",
+    "how": "same wiring as bidder 1"
+   },
+   {
+    "cell": "G4",
+    "number": 1,
+    "before": "#NAME?",
+    "after": "Not Meet -",
+    "how": "formula unchanged, entered again because it displayed an error"
+   }
+  ],
+  "skipped": [],
+  "log": "Resume repair log"
+ },
+ "check": {
+  "other sheets identical to before": true,
+  "cells that differ on the summary sheet are exactly the logged ones": false,
+  "formulas still not pointing at their own bidder": [],
+  "error values left on the summary sheet": [],
+  "other sheets identical to the open original": true
+ }
+}

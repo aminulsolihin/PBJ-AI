@@ -1,0 +1,122 @@
+[
+ {
+  "bidder": "PT. Empat Bintang Sempurna",
+  "row": 13,
+  "no": "1",
+  "label": "Meet",
+  "shown": "Qualified",
+  "finding": "verified",
+  "question": "",
+  "seconds": 312
+ },
+ {
+  "bidder": "PT. Empat Bintang Sempurna",
+  "row": 14,
+  "no": "2",
+  "label": "Meet",
+  "shown": "Qualified",
+  "finding": "verified",
+  "question": "",
+  "seconds": 234
+ },
+ {
+  "bidder": "PT. Empat Bintang Sempurna",
+  "row": 15,
+  "no": "3",
+  "label": "Meet",
+  "shown": "Qualified",
+  "finding": "verified",
+  "question": "",
+  "seconds": 180
+ },
+ {
+  "bidder": "PT. Empat Bintang Sempurna",
+  "row": 16,
+  "no": "4",
+  "label": "Not Meet",
+  "shown": "Not Qualified",
+  "finding": "no_document",
+  "question": "Please indicate the document and page in the bid as submitted that show this requirement is met.",
+  "seconds": 146
+ },
+ {
+  "bidder": "PT. Empat Bintang Sempurna",
+  "row": 18,
+  "no": "5a",
+  "label": "Meet",
+  "shown": "Qualified",
+  "finding": "verified",
+  "question": "",
+  "seconds": 235
+ },
+ {
+  "bidder": "PT. Empat Bintang Sempurna",
+  "row": 19,
+  "no": "5b",
+  "label": "Not Meet",
+  "shown": "Not Qualified",
+  "finding": "no_document",
+  "question": "Please indicate the document and page in the bid as submitted that show this requirement is met.",
+  "seconds": 151
+ },
+ {
+  "bidder": "PT. Empat Bintang Sempurna",
+  "row": 20,
+  "no": "5c",
+  "label": "Clarification Required",
+  "shown": "Clarify To Bidder",
+  "finding": "not_substantiated",
+  "question": "Provide evidence that the authorized person is a permanent employee (if delegated), such as an employment contract or payroll record.",
+  "seconds": 201
+ },
+ {
+  "bidder": "PT. Empat Bintang Sempurna",
+  "row": 21,
+  "no": "5d",
+  "label": "Not Meet",
+  "shown": "Not Qualified",
+  "finding": "no_document",
+  "question": "Please indicate the document and page in the bid as submitted that show this requirement is met.",
+  "seconds": 202
+ },
+ {
+  "bidder": "PT. Empat Bintang Sempurna",
+  "row": 22,
+  "no": "5e",
+  "label": "Clarification Required",
+  "shown": "Clarify To Bidder",
+  "finding": "not_substantiated",
+  "question": "Please indicate the document and page in the bid as submitted that show this requirement is met.",
+  "seconds": 256
+ },
+ {
+  "bidder": "PT. Empat Bintang Sempurna",
+  "row": 23,
+  "no": "8",
+  "label": "Not Meet",
+  "shown": "Not Qualified",
+  "finding": "no_document",
+  "question": "Please indicate the document and page in the bid as submitted that show this requirement is met.",
+  "seconds": 146
+ },
+ {
+  "bidder": "PT. Empat Bintang Sempurna",
+  "row": 25,
+  "no": "1",
+  "label": "Not Meet",
+  "shown": "Not Qualified",
+  "finding": "no_document",
+  "question": "Please indicate the document and page in the bid as submitted that show this requirement is met.",
+  "seconds": 188
+ },
+ {
+  "bidder": "PT. Empat Bintang Sempurna",
+  "row": 26,
+  "no": "2",
+  "label": "Not Meet",
+  "shown": "Not Qualified",
+  "finding": "no_document",
+  "question": "Please indicate the document and page in the bid as submitted that show this requirement is met.",
+  "seconds": 68
+ }
+]

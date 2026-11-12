@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Local Evaluator</title>
+<link rel="stylesheet" href="taskpane.css">
+<!-- Office.js is served from this computer (office/), not from the internet. -->
+<script src="office/office.js"></script>
+</head>
+<body>
+<header>
+  <div class="brand">
+    <h1>Local Evaluator</h1>
+    <span class="offline" title="The engine listens on 127.0.0.1 only and calls only the local model.">On this computer only</span>
+  </div>
+  <div class="lights">
+    <span id="l-engine" class="light">Engine</span>
+    <span id="l-model" class="light">Model</span>
+    <span id="l-excel" class="light">Excel</span>
+  </div>
+  <div id="banner" class="banner" hidden></div>
+</header>
+
+<main>
+  <section>
+    <h2><span class="step">1</span> Criteria</h2>
+    <p id="crit-info" class="info">Looking at the active sheet…</p>
+    <ul id="crit-rows" class="rows" hidden></ul>
+    <details id="crit-new">
+      <summary>Add a criteria sheet for this package</summary>
+      <p class="hint">Any table with a number column and a requirement column works. A "Doc Required" column is optional.</p>
+      <label>Sheet title (optional)
+        <input id="crit-title" type="text" placeholder="e.g. Administrative Criteria">
+      </label>
+      <label>From a Word or Excel file
+        <span class="row"><input id="crit-path" type="text" placeholder="C:\…\Criteria.docx"><button id="crit-browse" class="ghost">Browse</button></span>
+      </label>
+      <button id="crit-import">Create sheet from file</button>
+      <label>Or paste the table (copied from Excel or Word)
+        <textarea id="crit-paste" rows="4" placeholder="No.	Requirement	Doc Required"></textarea>
+      </label>
+      <button id="crit-pastebtn">Create sheet from pasted table</button>
+    </details>
+  </section>
+
+  <section>
+    <h2><span class="step">2</span> Bidders</h2>
+    <div id="bidder-tools" class="tools"></div>
+    <div id="bidders"></div>
+    <details id="bidder-new">
+      <summary>Add a bidder</summary>
+      <p id="b-hint" class="hint" hidden></p>
+      <label>Bidder name
+        <input id="b-name" type="text" placeholder="PT …">
+      </label>
+      <label>Folder with this bidder's documents
+        <span class="row"><input id="b-folder" type="text" placeholder="C:\Bids\…"><button id="b-browse" class="ghost">Browse</button></span>
+      </label>
+      <button id="b-add">Add bidder columns</button>
+    </details>
+  </section>
+
+  <section id="run" hidden>
+    <h2><span class="step">3</span> Evaluation <span id="run-title" class="sub"></span></h2>
+    <div class="bar"><div id="run-bar"></div></div>
+    <p id="run-info" class="info"></p>
+    <button id="run-stop" class="danger" hidden>Stop</button>
+    <ul id="run-results" class="rows"></ul>
+    <details>
+      <summary>Activity log</summary>
+      <pre id="run-log"></pre>
+    </details>
+  </section>
+
+  <section>
+    <h2>Use on another workbook</h2>
+    <p class="hint">Attaches this pane to an evaluation workbook file and opens it. From then on that workbook opens with its own Local Evaluator pane. The workbook must be closed; a backup copy is kept the first time.</p>
+    <button id="attach" class="ghost">Attach to a workbook…</button>
+  </section>
+
+  <section>
+    <details id="settings">
+      <summary>Settings</summary>
+      <label>Local model
+        <select id="s-model"></select>
+      </label>
+      <label class="check"><input id="s-expand" type="checkbox"> Let the model suggest search words for each requirement (better matching; slower the first time)</label>
+      <label>Document text given to the model per requirement
+        <select id="s-chars">
+          <option value="5000">Short (faster)</option>
+          <option value="9000">Normal</option>
+          <option value="14000">Long (slower, needs more memory)</option>
+        </select>
+      </label>
+      <p class="hint"><a href="help.html" target="_blank">How this works</a></p>
+    </details>
+  </section>
+</main>
+
+<div id="ask" class="ask" hidden>
+  <div class="ask-box">
+    <p id="ask-text"></p>
+    <div id="ask-buttons" class="ask-buttons"></div>
+  </div>
+</div>
+<script src="taskpane.js"></script>
+</body>
+</html>

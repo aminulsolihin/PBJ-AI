@@ -1,0 +1,338 @@
+Local Evaluator engine listening on https://localhost:47821  (Excel link: True)
+Local Evaluator engine listening on https://localhost:47821  (Excel link: True)
+Local Evaluator engine listening on https://localhost:47821  (Excel link: True)
+Local Evaluator engine listening on https://localhost:47821  (Excel link: True)
+Local Evaluator engine listening on https://localhost:47821  (Excel link: True)
+Local Evaluator engine listening on https://localhost:47821  (Excel link: True)
+[job] === PT. Empat Bintang Sempurna (2 requirement(s))
+[job]   Reading documents in C:\LocalEvaluator\test\PT Contoh Alkes Nusantara
+[job]   Reading 1/7: 01 NIB.txt
+[job]   Reading 2/7: 02 Izin Distribusi Alkes.txt
+[job]   Reading 3/7: 03 KSWP.txt
+[job]   Reading 4/7: 04 Surat Kuasa.txt
+[job]   Reading 5/7: 05 Surat Pernyataan Kinerja.txt
+[job]   Reading 6/7: 06 Akta Pendirian.pdf
+[job]   Reading 7/7: 07 KTP Direktur (scan).pdf
+[job]   7 files read, 1 scanned pages recognised, 0 could not be read.
+[job]   Requirement 5a (row 18): thinking...
+[job]     Qualified (328 s)
+[job]   Requirement 5d (row 21): thinking...
+[job]     Qualified (200 s)
+[job] Finished. Qualified: 2, Not Qualified: 0, Clarify To Bidder: 0. This is a draft; review each row, then save the workbook.
+Local Evaluator engine listening on https://localhost:47821  (Excel link: True)
+Local Evaluator engine listening on https://localhost:47821  (Excel link: True)
+[job] === PT. Empat Bintang Sempurna (2 requirement(s))
+[job]   Reading documents in C:\LocalEvaluator\test\PT Contoh Alkes Nusantara
+[job]   Reading 6/7: 06 Akta Pendirian.pdf
+[job]   Reading 7/7: 07 KTP Direktur (scan).pdf
+[job]   7 files read, 1 scanned pages recognised, 0 could not be read.
+[job]   Requirement 5a (row 18): thinking...
+[job]     Clarify To Bidder (285 s)
+[job]   Requirement 5d (row 21): thinking...
+[job]     Clarify To Bidder (302 s)
+[job] Finished. Qualified: 0, Not Qualified: 0, Clarify To Bidder: 2. This is a draft; review each row, then save the workbook.
+Local Evaluator engine listening on https://localhost:47821  (Excel link: True)
+Local Evaluator engine listening on https://localhost:47821  (Excel link: True)
+Local Evaluator engine listening on https://localhost:47821  (Excel link: True)
+[web] 09:18:59 200 /assets/icon-64.png (Excel pane)
+[web] 09:18:59 200 /assets/icon-16.png (Excel pane)
+[web] 09:18:59 200 /assets/icon-32.png (Excel pane)
+[web] 09:18:59 200 /assets/icon-32.png (Excel pane)
+[web] 09:18:59 200 /assets/icon-32.png (Excel pane)
+[web] 09:18:59 200 /assets/icon-80.png (Excel pane)
+[web] 09:18:59 200 /assets/icon-32.png (Excel pane)
+[web] 09:19:01 200 /taskpane.html (Excel pane)
+[web] 09:19:01 404 /favicon.ico (Excel pane)
+Local Evaluator engine listening on https://localhost:47821  (Excel link: True)
+[api] 09:20:13 /api/layout ok  workbook=Pane launch test 2.xlsx
+[api] 09:20:13 /api/layout ok  workbook=Pane launch test 2.xlsx
+[api] 09:20:15 /api/layout ok  workbook=Pane launch test 2.xlsx
+[web] 09:23:41 200 /assets/icon-32.png (Excel pane)
+[web] 09:23:41 200 /assets/icon-32.png (Excel pane)
+[web] 09:23:41 200 /assets/icon-64.png (Excel pane)
+[web] 09:23:41 200 /assets/icon-16.png (Excel pane)
+[web] 09:23:41 200 /assets/icon-80.png (Excel pane)
+[web] 09:23:41 200 /assets/icon-32.png (Excel pane)
+[web] 09:23:41 200 /assets/icon-32.png (Excel pane)
+[web] 09:23:42 200 /taskpane.html (Excel pane)
+[web] 09:23:42 404 /favicon.ico (Excel pane)
+[api] 09:23:42 /api/layout ok  workbook=Open Local Evaluator.xlsx
+[api] 09:23:42 /api/layout ok  workbook=Open Local Evaluator.xlsx
+[api] 09:23:42 /api/layout ok  workbook=Open Local Evaluator.xlsx
+[api] 09:24:53 /api/layout ok  workbook=Open Local Evaluator.xlsx
+[web] 09:25:24 200 /assets/icon-32.png (Excel pane)
+[web] 09:25:37 200 /assets/icon-32.png (Excel pane)
+[web] 09:35:08 200 /taskpane.html (browser)
+[api] 09:35:09 /api/layout 409 The workbook "Real layout test.xlsx" was not found among the open Excel files. Save it, then reopen this pane.
+[web] 09:35:09 404 /favicon.ico (browser)
+[api] 09:36:22 /api/layout 409 The workbook "Real layout test.xlsx" was not found among the open Excel files. Save it, then reopen this pane.
+[api] 09:36:23 /api/layout 409 The workbook "Real layout test.xlsx" was not found among the open Excel files. Save it, then reopen this pane.
+[api] 09:37:51 /api/layout 409 The workbook "Real layout test.xlsx" was not found among the open Excel files. Save it, then reopen this pane.
+[web] 09:38:36 200 /assets/icon-64.png (Excel pane)
+[web] 09:38:36 200 /assets/icon-32.png (Excel pane)
+[web] 09:38:36 200 /assets/icon-32.png (Excel pane)
+[web] 09:38:36 200 /assets/icon-16.png (Excel pane)
+[web] 09:38:36 200 /assets/icon-80.png (Excel pane)
+[web] 09:38:36 200 /assets/icon-32.png (Excel pane)
+[web] 09:38:36 200 /assets/icon-32.png (Excel pane)
+[web] 09:38:38 200 /taskpane.html (Excel pane)
+[web] 09:38:38 404 /favicon.ico (Excel pane)
+[api] 09:38:38 /api/layout ok  workbook=Open Local Evaluator.xlsx
+[api] 09:38:38 /api/layout ok  workbook=Open Local Evaluator.xlsx
+[api] 09:38:38 /api/layout ok  workbook=Open Local Evaluator.xlsx
+[web] 09:39:34 200 /assets/icon-32.png (Excel pane)
+[web] 09:39:34 200 /assets/icon-32.png (Excel pane)
+[web] 09:39:34 200 /assets/icon-80.png (Excel pane)
+[web] 09:39:35 200 /assets/icon-32.png (Excel pane)
+[web] 09:39:35 200 /assets/icon-16.png (Excel pane)
+[web] 09:39:35 200 /assets/icon-64.png (Excel pane)
+[web] 09:39:35 200 /assets/icon-32.png (Excel pane)
+[web] 09:39:36 200 /taskpane.html (Excel pane)
+[web] 09:39:36 404 /favicon.ico (Excel pane)
+[api] 09:39:37 /api/layout ok  workbook=Form 11 A _Lot 2_Automatic Extractor.xlsx
+[api] 09:39:37 /api/layout ok  workbook=Form 11 A _Lot 2_Automatic Extractor.xlsx
+[api] 09:39:37 /api/layout ok  workbook=Form 11 A _Lot 2_Automatic Extractor.xlsx
+[api] 09:40:37 /api/prepare ok  workbook=Form 11 A _Lot 2_Automatic Extractor.xlsx
+[api] 09:41:40 /api/pick ok  workbook=Form 11 A _Lot 2_Automatic Extractor.xlsx
+[api] 09:41:40 /api/bidder/folder ok  workbook=Form 11 A _Lot 2_Automatic Extractor.xlsx
+[api] 09:42:03 /api/layout ok  workbook=Form 11 A _Lot 2_Automatic Extractor.xlsx
+[api] 09:42:06 /api/evaluate ok  workbook=Form 11 A _Lot 2_Automatic Extractor.xlsx
+[job] === PT. Empat Bintang Sempurna (12 requirement(s))
+[job]   Reading documents in G:\My Drive\Project Loan\Automatic Extractor - INPULS\8. Pemasukan Penawaran (Teknis & Harga)\LOT 2\1. PT.EMPAT BINTANG SEMPURNA\Kualifikasi
+[job]   Reading 1/1: Kual. PT.EMPAT BINTANG SEMPURNA.pdf
+[job]   1 files read, 0 scanned pages recognised, 0 could not be read.
+[job]   Requirement 1 (row 13): thinking...
+[api] 09:47:08 /api/layout 409 The workbook "Real layout test.xlsx" was not found among the open Excel files. Save it, then reopen this pane.
+[web] 09:48:01 200 /help.html (Excel pane)
+[web] 09:48:04 200 /help.html (Excel pane)
+[job]     Qualified (312 s)
+[job]   Requirement 2 (row 14): thinking...
+[api] 09:49:06 /api/layout ok  workbook=Form 11 A _Lot 2_Automatic Extractor.xlsx
+[api] 09:49:11 /api/layout ok  workbook=Form 11 A _Lot 2_Automatic Extractor.xlsx
+[job]     Qualified (234 s)
+[job]   Requirement 3 (row 15): thinking...
+[api] 09:52:20 /api/layout ok  workbook=Form 11 A _Lot 2_Automatic Extractor.xlsx
+[api] 09:52:25 /api/layout ok  workbook=Form 11 A _Lot 2_Automatic Extractor.xlsx
+[job]     Qualified (180 s)
+[job]   Requirement 4 (row 16): thinking...
+[job]     Not Qualified (146 s)
+[job]   Requirement 5a (row 18): thinking...
+[api] 10:00:30 /api/layout 409 The workbook "Real layout test.xlsx" was not found among the open Excel files. Save it, then reopen this pane.
+[web] 10:01:39 200 /assets/icon-32.png (Excel pane)
+[web] 10:01:41 200 /assets/icon-32.png (Excel pane)
+[web] 10:01:41 200 /taskpane.html (Excel pane)
+[api] 10:01:42 /api/layout ok  workbook=Open Local Evaluator.xlsx
+[api] 10:01:42 /api/layout ok  workbook=Open Local Evaluator.xlsx
+[api] 10:01:42 /api/layout ok  workbook=Open Local Evaluator.xlsx
+[api] 10:02:20 /api/layout ok  workbook=Form 11 A _Lot 2_Automatic Extractor.xlsx
+[api] 10:02:22 /api/layout ok  workbook=Form 11 A _Lot 2_Automatic Extractor.xlsx
+[job]     Qualified (235 s)
+[job]   Requirement 5b (row 19): thinking...
+[api] 10:02:26 /api/layout ok  workbook=Form 11 A _Lot 2_Automatic Extractor.xlsx
+[api] 10:02:31 /api/layout ok  workbook=Form 11 A _Lot 2_Automatic Extractor.xlsx
+[api] 10:02:50 /api/layout ok  workbook=Form 11 A _Lot 2_Automatic Extractor.xlsx
+[job]     Not Qualified (151 s)
+[job]   Requirement 5c (row 20): thinking...
+[job]     Clarify To Bidder (201 s)
+[job]   Requirement 5d (row 21): thinking...
+[job]     Not Qualified (202 s)
+[job]   Requirement 5e (row 22): thinking...
+[api] 10:13:17 /api/layout ok  workbook=Form 11 A _Lot 2_Automatic Extractor.xlsx
+[api] 10:13:44 /api/layout ok  workbook=Form 11 A _Lot 2_Automatic Extractor.xlsx
+[job]     Clarify To Bidder (256 s)
+[job]   Requirement 8 (row 23): thinking...
+[job]     Not Qualified (146 s)
+[job]   Requirement 1 (row 25): thinking...
+[job]     Not Qualified (188 s)
+[job]   Requirement 2 (row 26): thinking...
+[job]     Not Qualified (68 s)
+[job] Finished. Qualified: 4, Not Qualified: 6, Clarify To Bidder: 2. This is a draft; review each row, then save the workbook.
+[api] 10:24:52 /api/layout ok  workbook=Form 11 A _Lot 2_Automatic Extractor.xlsx
+[api] 10:36:19 /api/layout ok  workbook=Form 11 A _Lot 2_Automatic Extractor.xlsx
+[api] 10:36:26 /api/layout ok  workbook=Form 11 A _Lot 2_Automatic Extractor.xlsx
+[api] 10:36:36 /api/prepare ok  workbook=Form 11 A _Lot 2_Automatic Extractor.xlsx
+[api] 10:37:10 /api/pick ok  workbook=Form 11 A _Lot 2_Automatic Extractor.xlsx
+[api] 10:37:10 /api/bidder/folder ok  workbook=Form 11 A _Lot 2_Automatic Extractor.xlsx
+[api] 10:37:13 /api/layout ok  workbook=Form 11 A _Lot 2_Automatic Extractor.xlsx
+[api] 10:37:18 /api/evaluate ok  workbook=Form 11 A _Lot 2_Automatic Extractor.xlsx
+[job] === PT. Empat Bintang Sempurna (7 requirement(s))
+[job]   Reading documents in G:\My Drive\Project Loan\Automatic Extractor - INPULS\8. Pemasukan Penawaran (Teknis & Harga)\LOT 2\1. PT.EMPAT BINTANG SEMPURNA
+[job]   Reading 1/11: administrasi-dan-teknis\1  Teknis - Spesifikasi teknis barang\DATA HARGA DAN KUANTITAS 2.pdf
+[job]   Reading 2/11: administrasi-dan-teknis\1  Teknis - Spesifikasi teknis barang\FAKTA INTEKGRITAS 2.pdf
+[job]   Reading 3/11: administrasi-dan-teknis\1  Teknis - Spesifikasi teknis barang\ISO 13485.pdf
+[job]   Reading 4/11: administrasi-dan-teknis\1  Teknis - Spesifikasi teknis barang\ISO 9001.pdf
+[job]   Reading 5/11: administrasi-dan-teknis\1  Teknis - Spesifikasi teknis barang\ISO14001.pdf
+[job]   Reading 6/11: administrasi-dan-teknis\1  Teknis - Spesifikasi teknis barang\original sertifikat.pdf
+[job]   Reading 7/11: administrasi-dan-teknis\1  Teknis - Spesifikasi teknis barang\SPEK TEKNIS ECTRATOR.pdf
+[job]   Reading 8/11: administrasi-dan-teknis\2  Teknis - Garansi\SURAT GARANSI BARANG 2.pdf
+[job]   Reading 9/11: administrasi-dan-teknis\3  Teknis - Jangka waktu penyerahan\Pemberitahuan Jangka Waktu dan Jadwal Pengiriman Barang 2.pdf
+[job]   Reading 10/11: administrasi-dan-teknis\4  Teknis - Identitas (jenis\brosur ectractor 3.pdf
+[job]   11 files read, 0 scanned pages recognised, 10 could not be read.
+[job]     not readable: administrasi-dan-teknis/1  Teknis - Spesifikasi teknis barang/DATA HARGA DAN KUANTITAS 2.pdf
+[job]     not readable: administrasi-dan-teknis/1  Teknis - Spesifikasi teknis barang/FAKTA INTEKGRITAS 2.pdf
+[job]     not readable: administrasi-dan-teknis/1  Teknis - Spesifikasi teknis barang/ISO 13485.pdf
+[job]     not readable: administrasi-dan-teknis/1  Teknis - Spesifikasi teknis barang/ISO 9001.pdf
+[job]     not readable: administrasi-dan-teknis/1  Teknis - Spesifikasi teknis barang/ISO14001.pdf
+[job]     not readable: administrasi-dan-teknis/1  Teknis - Spesifikasi teknis barang/original sertifikat.pdf
+[job]     not readable: administrasi-dan-teknis/1  Teknis - Spesifikasi teknis barang/SPEK TEKNIS ECTRATOR.pdf
+[job]     not readable: administrasi-dan-teknis/2  Teknis - Garansi/SURAT GARANSI BARANG 2.pdf
+[job]     not readable: administrasi-dan-teknis/3  Teknis - Jangka waktu penyerahan/Pemberitahuan Jangka Waktu dan Jadwal Pengiriman Barang 2.pdf
+[job]     not readable: administrasi-dan-teknis/4  Teknis - Identitas (jenis/brosur ectractor 3.pdf
+[job]   Requirement 1 (row 11): thinking...
+[job]     Clarify To Bidder (249 s)
+[job]   Requirement 2 (a) (row 12): thinking...
+[job]     Clarify To Bidder (188 s)
+[job]   Requirement 2 (b) (row 13): thinking...
+[job]     Clarify To Bidder (307 s)
+[job]   Requirement 2 (c) (row 14): thinking...
+[job]     Clarify To Bidder (229 s)
+[job]   Requirement 2 (d) (row 15): thinking...
+[api] 10:56:47 /api/layout ok  workbook=Form 11 A _Lot 2_Automatic Extractor.xlsx
+[job]     Clarify To Bidder (252 s)
+[job]   Requirement 3 (row 16): thinking...
+[job]     Clarify To Bidder (247 s)
+[job]   Requirement 8 (row 17): thinking...
+[job]     Clarify To Bidder (178 s)
+[job] Finished. Qualified: 0, Not Qualified: 0, Clarify To Bidder: 7. This is a draft; review each row, then save the workbook.
+[api] 11:08:40 /api/layout ok  workbook=Form 11 A _Lot 2_Automatic Extractor.xlsx
+[api] 11:16:09 /api/layout ok  workbook=Form 11 A _Lot 2_Automatic Extractor.xlsx
+[web] 11:31:02 200 /taskpane.html (browser)
+[api] 11:31:03 /api/layout 409 The workbook "Real layout test.xlsx" was not found among the open Excel files. Save it, then reopen this pane.
+[web] 11:31:03 404 /favicon.ico (browser)
+[api] 11:31:12 /api/layout 409 The workbook "Real layout test.xlsx" was not found among the open Excel files. Save it, then reopen this pane.
+Local Evaluator engine listening on https://localhost:47821  (Excel link: True)
+[web] 21:25:17 200 /assets/icon-32.png (Excel pane)
+[web] 21:26:33 200 /assets/icon-64.png (Excel pane)
+[web] 21:26:33 200 /assets/icon-32.png (Excel pane)
+[web] 21:26:33 200 /assets/icon-32.png (Excel pane)
+[web] 21:26:33 200 /assets/icon-16.png (Excel pane)
+[web] 21:26:33 200 /assets/icon-32.png (Excel pane)
+[web] 21:26:33 200 /assets/icon-80.png (Excel pane)
+[web] 21:26:33 200 /assets/icon-32.png (Excel pane)
+[web] 21:26:34 200 /taskpane.html (Excel pane)
+[web] 21:26:34 404 /favicon.ico (Excel pane)
+[api] 21:26:34 /api/layout ok  workbook=Open Local Evaluator.xlsx
+[api] 21:26:34 /api/layout ok  workbook=Open Local Evaluator.xlsx
+[api] 21:26:43 /api/layout ok  workbook=Open Local Evaluator.xlsx
+[web] 21:27:17 200 /taskpane.html (Excel pane)
+[web] 21:27:17 404 /favicon.ico (Excel pane)
+[api] 21:27:17 /api/layout ok  workbook=Open Local Evaluator.xlsx
+[api] 21:27:35 /api/layout ok  workbook=Open Local Evaluator.xlsx
+[api] 21:27:37 /api/layout ok  workbook=Open Local Evaluator.xlsx
+[api] 21:27:44 /api/layout ok  workbook=Open Local Evaluator.xlsx
+[api] 21:27:44 /api/layout ok  workbook=Open Local Evaluator.xlsx
+[web] 21:28:56 200 /assets/icon-32.png (Excel pane)
+[web] 21:28:56 200 /taskpane.html (Excel pane)
+[api] 21:28:56 /api/layout ok  workbook=Side layout test.xlsx
+[api] 21:28:57 /api/layout ok  workbook=Side layout test.xlsx
+[api] 21:28:57 /api/layout ok  workbook=Side layout test.xlsx
+[web] 21:32:02 200 /assets/icon-32.png (Excel pane)
+[web] 21:32:04 200 /assets/icon-32.png (Excel pane)
+[web] 21:32:05 200 /assets/icon-32.png (Excel pane)
+[web] 21:32:05 200 /assets/icon-64.png (Excel pane)
+[web] 21:32:05 200 /assets/icon-16.png (Excel pane)
+[web] 21:32:05 200 /assets/icon-80.png (Excel pane)
+[web] 21:32:05 200 /assets/icon-32.png (Excel pane)
+[web] 21:32:05 200 /taskpane.html (Excel pane)
+[web] 21:32:05 404 /favicon.ico (Excel pane)
+[api] 21:32:05 /api/layout ok  workbook=Side layout test.xlsx
+[api] 21:32:05 /api/layout ok  workbook=Side layout test.xlsx
+[api] 21:32:05 /api/layout ok  workbook=Side layout test.xlsx
+[web] 21:32:29 200 /assets/icon-32.png (Excel pane)
+[web] 21:32:29 200 /assets/icon-16.png (Excel pane)
+[web] 21:32:29 200 /assets/icon-64.png (Excel pane)
+[web] 21:32:29 200 /assets/icon-32.png (Excel pane)
+[web] 21:32:29 200 /assets/icon-32.png (Excel pane)
+[web] 21:32:29 200 /assets/icon-80.png (Excel pane)
+[web] 21:32:29 200 /assets/icon-32.png (Excel pane)
+[web] 21:32:29 200 /taskpane.html (Excel pane)
+[web] 21:32:29 404 /favicon.ico (Excel pane)
+[api] 21:32:29 /api/layout ok  workbook=Side layout test.xlsx
+[api] 21:32:29 /api/layout ok  workbook=Side layout test.xlsx
+[api] 21:32:29 /api/layout ok  workbook=Side layout test.xlsx
+[api] 21:33:21 /api/layout ok  workbook=Side layout test.xlsx
+[api] 21:33:44 /api/layout ok  workbook=Side layout test.xlsx
+[api] 21:33:53 /api/layout ok  workbook=Side layout test.xlsx
+Local Evaluator engine listening on https://localhost:47821  (Excel link: True)
+[api] 21:35:30 /api/attach ok  workbook=(active workbook)
+[web] 21:35:33 200 /assets/icon-32.png (Excel pane)
+[web] 21:35:33 200 /assets/icon-16.png (Excel pane)
+[web] 21:35:33 200 /assets/icon-64.png (Excel pane)
+[web] 21:35:33 200 /assets/icon-32.png (Excel pane)
+[web] 21:35:33 200 /assets/icon-32.png (Excel pane)
+[web] 21:35:33 200 /assets/icon-80.png (Excel pane)
+[web] 21:35:33 200 /assets/icon-32.png (Excel pane)
+[web] 21:35:33 200 /taskpane.html (Excel pane)
+[web] 21:35:34 404 /favicon.ico (Excel pane)
+[api] 21:35:34 /api/layout ok  workbook=attach B.xlsx
+[api] 21:35:34 /api/layout ok  workbook=attach B.xlsx
+[api] 21:35:34 /api/layout ok  workbook=attach B.xlsx
+[api] 21:36:08 /api/attach ok  workbook=(active workbook)
+[web] 21:36:09 200 /assets/icon-32.png (Excel pane)
+[api] 21:36:59 /api/layout ok  workbook=attach B.xlsx
+[api] 21:37:08 /api/layout ok  workbook=attach B.xlsx
+[api] 21:37:09 /api/layout ok  workbook=Real layout test.xlsx
+[web] 21:39:08 200 /taskpane.html (Excel pane)
+[web] 21:39:08 200 /taskpane.html (Excel pane)
+[web] 21:39:08 404 /favicon.ico (Excel pane)
+[api] 21:39:08 /api/layout ok  workbook=Auto-open hidden flag.xlsx
+[api] 21:39:09 /api/layout ok  workbook=Real layout test.xlsx
+[web] 21:39:10 200 /assets/icon-32.png (Excel pane)
+[web] 21:39:10 200 /assets/icon-64.png (Excel pane)
+[web] 21:39:10 200 /assets/icon-16.png (Excel pane)
+[web] 21:39:10 200 /assets/icon-32.png (Excel pane)
+[web] 21:39:10 200 /assets/icon-32.png (Excel pane)
+[web] 21:39:10 200 /assets/icon-80.png (Excel pane)
+[web] 21:39:10 200 /assets/icon-64.png (Excel pane)
+[web] 21:39:10 200 /assets/icon-32.png (Excel pane)
+[web] 21:39:10 200 /assets/icon-16.png (Excel pane)
+[web] 21:39:10 200 /assets/icon-32.png (Excel pane)
+[web] 21:39:10 200 /assets/icon-80.png (Excel pane)
+[web] 21:39:10 200 /taskpane.html (Excel pane)
+[web] 21:39:10 200 /taskpane.html (Excel pane)
+[api] 21:39:10 /api/layout ok  workbook=Auto-open hidden flag.xlsx
+[web] 21:40:34 200 /taskpane.html (Excel pane)
+[web] 21:40:34 404 /favicon.ico (Excel pane)
+[api] 21:40:34 /api/layout ok  workbook=Real layout test.xlsx
+[web] 21:40:36 200 /assets/icon-16.png (Excel pane)
+[web] 21:40:36 200 /assets/icon-32.png (Excel pane)
+[web] 21:40:36 200 /assets/icon-64.png (Excel pane)
+[web] 21:40:36 200 /assets/icon-32.png (Excel pane)
+[web] 21:40:36 200 /assets/icon-32.png (Excel pane)
+[web] 21:40:36 200 /assets/icon-80.png (Excel pane)
+[web] 21:40:36 200 /taskpane.html (Excel pane)
+[web] 21:40:36 404 /favicon.ico (Excel pane)
+[api] 21:40:36 /api/layout ok  workbook=Real layout test.xlsx
+Local Evaluator engine listening on https://localhost:47821  (Excel link: True)
+[web] 06:01:47 200 /assets/icon-32.png (Excel pane)
+[web] 06:01:48 200 /assets/icon-32.png (Excel pane)
+[web] 06:01:48 200 /assets/icon-64.png (Excel pane)
+[web] 06:01:48 200 /assets/icon-32.png (Excel pane)
+[web] 06:01:48 200 /assets/icon-80.png (Excel pane)
+[web] 06:01:48 200 /assets/icon-16.png (Excel pane)
+[web] 06:01:48 200 /assets/icon-32.png (Excel pane)
+[web] 06:01:48 200 /taskpane.html (Excel pane)
+[web] 06:01:48 404 /favicon.ico (Excel pane)
+[api] 06:01:49 /api/layout ok  workbook=Form 11 A _Lot 2_Automatic Extractor.xlsx
+[api] 06:01:49 /api/layout ok  workbook=Form 11 A _Lot 2_Automatic Extractor.xlsx
+[api] 06:01:58 /api/layout ok  workbook=Form 11 A _Lot 2_Automatic Extractor.xlsx
+[api] 06:20:13 /api/layout ok  workbook=Form 11 A _Lot 2_Automatic Extractor.xlsx
+[api] 06:20:18 /api/layout ok  workbook=Form 11 A _Lot 2_Automatic Extractor.xlsx
+Local Evaluator engine listening on https://localhost:47821  (Excel link: True)
+[api] 06:28:47 /api/bidder/plan-block ok  workbook=Add bidder test.xlsx
+[api] 06:28:56 /api/bidder/add-block ok  workbook=Add bidder test.xlsx
+[api] 06:28:58 /api/layout ok  workbook=Add bidder test.xlsx
+[api] 06:29:01 /api/layout ok  workbook=Add bidder test.xlsx
+[api] 06:29:03 /api/prepare ok  workbook=Add bidder test.xlsx
+[api] 06:29:05 /api/prepare ok  workbook=Add bidder test.xlsx
+[api] 06:29:08 /api/layout ok  workbook=Add bidder test.xlsx
+[api] 06:29:17 /api/bidder/add-block ok  workbook=Add bidder test.xlsx
+[web] 06:31:33 200 /taskpane.html (browser)
+[web] 06:31:33 404 /favicon.ico (browser)
+[api] 06:31:34 /api/layout ok  workbook=Pane add bidder test.xlsx
+[web] 06:31:37 404 /favicon.ico (browser)
+[api] 06:31:50 /api/layout ok  workbook=Pane add bidder test.xlsx
+[api] 06:31:50 /api/bidder/plan-block ok  workbook=Pane add bidder test.xlsx
+[api] 06:32:08 /api/bidder/add-block ok  workbook=Pane add bidder test.xlsx
+[api] 06:32:08 /api/layout ok  workbook=Pane add bidder test.xlsx
+Local Evaluator engine listening on https://localhost:47821  (Excel link: True)

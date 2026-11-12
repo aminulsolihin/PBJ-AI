@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Local Evaluator – how it works</title>
+<link rel="stylesheet" href="taskpane.css">
+<style>main { max-width: 640px; } li { margin-bottom: 6px; } h2 { margin-top: 16px; }</style>
+</head>
+<body>
+<main>
+<h1>Local Evaluator</h1>
+<p>Drafts a document-based bid evaluation inside Excel using a model that runs on this computer. Nothing is sent to the internet: the engine listens on 127.0.0.1 only and calls only the local Ollama service.</p>
+
+<h2>Getting the pane into a workbook</h2>
+<p>Excel shows a locally installed add-in only in workbooks that carry a reference to it. Attach it once per evaluation workbook:</p>
+<ul>
+  <li>Close the workbook, then double-click <code>C:\LocalEvaluator\Attach to workbook.cmd</code> and choose it (or drag the workbook onto that file). It opens with the pane on the right.</li>
+  <li>Or open <code>C:\LocalEvaluator\Open Local Evaluator.xlsx</code> and use <i>Attach to a workbook</i> in its pane.</li>
+</ul>
+<p>From then on that workbook opens with its own pane every time. A backup copy of the workbook is kept the first time. Only a small reference is added to the file; no sheet is changed. While any workbook with the pane is open, the Local Evaluator button is also at the far right of the Home tab of every workbook.</p>
+
+<h2>Steps</h2>
+<ol>
+  <li><b>Criteria.</b> Open the evaluation sheet. The pane recognises two layouts by itself:
+    <ul>
+      <li><i>One block per bidder</i> (forms such as Administrasi or Form 11A): the criteria table is repeated down the sheet under each "Name of Bidder / Proposer" row.</li>
+      <li><i>One table</i>: a single criteria table with a "No." and a "Requirement" column. You can also create one from a Word or Excel file, or from a pasted table.</li>
+    </ul>
+    "Doc Required" and any threshold columns are read when present. Each procurement package can have its own sheets.</li>
+  <li><b>Bidders.</b> For a block-per-bidder sheet, click <i>Add AI Evaluation columns</i> once; the bidders are taken from the sheet. For a one-table sheet, add each bidder by name. Then give each bidder a documents folder (PDF, Word, Excel, images, text). <i>Find folders automatically</i> matches bidder names to the sub-folders of a folder you choose. Folders are remembered for the workbook, across its sheets.<br>
+  <b>More bidders than the form has room for:</b> on a block-per-bidder workbook, <i>Add a bidder</i> creates a new block on every bidder sheet and a new row on the summary sheet the names come from. It copies the first block, empties what evaluators typed for the first bidder, and rewires the formulas to the new block. Existing rows are not changed, and a copy of the workbook as it was is saved under <code>C:\LocalEvaluator\data\backups</code>. Sheets with a fixed grid of bidder slots (such as scoring forms) are not extended; the pane names them.</li>
+  <li><b>Evaluate.</b> One bidder or all. The engine reads the folder (scanned pages are recognised with the Windows text recogniser), finds the pages that relate to each requirement, and asks the model for a finding. The sheet fills in row by row; you can keep working in Excel.</li>
+</ol>
+
+<h2>What it writes</h2>
+<ul>
+  <li>Three columns to the right of your table: REMARKS, NOTES and ATTACHED DOCUMENT, each marked "(AI Evaluation)". Nothing else is ever written; your own Document Reference, Determination and Remark columns are never touched, so summary sheets that read them are unaffected.</li>
+  <li><b>Verdict:</b> in the sheet's own words, taken from the dropdown of your verdict column (for example Qualified / Not Qualified / Clarify To Bidder), otherwise Meet / Not Meet / Clarification Required.</li>
+  <li><b>Note:</b> plain English in black, then "ID:" and the Bahasa Indonesia translation in blue.</li>
+  <li><b>Attached document:</b> a numbered list of the files and pages relied on. A cell with one file opens that file when clicked.</li>
+</ul>
+
+<h2>Checks done by fixed rules, not by the model</h2>
+<ul>
+  <li>The verdict follows a fixed decision table from the model's finding.</li>
+  <li>A "met" finding must cite a page that was actually read; otherwise it becomes a clarification.</li>
+  <li>A document whose printed validity ended before today is treated as expired.</li>
+  <li>A document in another company's name is not accepted without clarification (except where the requirement is about the manufacturer).</li>
+  <li>A figure below the stated minimum is flagged for a hand check.</li>
+  <li>"Nothing found" becomes a clarification when some files could not be read.</li>
+</ul>
+
+<h2>Limits to keep in mind</h2>
+<ul>
+  <li>The result is a draft from a small local model. Check every row against the documents before the Committee relies on it.</li>
+  <li>Each requirement takes a few minutes on this laptop. Close other programs to free memory.</li>
+  <li>Sums, averages and date arithmetic (turnover, years of experience) are the model's weakest area; verify those rows by hand.</li>
+  <li>Evaluating again clears Excel's Undo history for the sheet. The previous AI columns are saved under <code>C:\LocalEvaluator\data\runs</code>.</li>
+</ul>
+
+<h2>Keeping it offline</h2>
+<ul>
+  <li>Keep bid documents and workbooks on a local drive, not in a cloud-synced folder.</li>
+  <li>For a hard guarantee, switch on airplane mode while evaluating, or add Windows Firewall outbound rules for <code>ollama.exe</code> and Python.</li>
+</ul>
+</main>
+</body>
+</html>

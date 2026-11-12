@@ -1,0 +1,72 @@
+[
+ {
+  "bidder": "PT. Empat Bintang Sempurna",
+  "row": 11,
+  "no": "1",
+  "label": "Clarification Required",
+  "shown": "Clarify To Bidder",
+  "finding": "not_substantiated",
+  "question": "Provide a Statement Letter confirming that no contract non-performance resulting from a breach of contractual obligations attributable to the bidder has occurred during the four (4) years preceding the deadline for the submission of bids.",
+  "seconds": 249
+ },
+ {
+  "bidder": "PT. Empat Bintang Sempurna",
+  "row": 12,
+  "no": "2 (a)",
+  "label": "Clarification Required",
+  "shown": "Clarify To Bidder",
+  "finding": "evidence_unreadable",
+  "question": "Please indicate the document and page in the bid as submitted that show this requirement is met.",
+  "seconds": 188
+ },
+ {
+  "bidder": "PT. Empat Bintang Sempurna",
+  "row": 13,
+  "no": "2 (b)",
+  "label": "Clarification Required",
+  "shown": "Clarify To Bidder",
+  "finding": "not_substantiated",
+  "question": "Provide a Statement Letter for Production Capacity for the years 2022-2025, showing annual production capacity of at least 50% of 9 units (i.e., 4.5 units) per year, and evidence of manufacturing experience for Automatic Extractor for at least four years prior to the bid submission deadline.",
+  "seconds": 307
+ },
+ {
+  "bidder": "PT. Empat Bintang Sempurna",
+  "row": 14,
+  "no": "2 (c)",
+  "label": "Clarification Required",
+  "shown": "Clarify To Bidder",
+  "finding": "evidence_unreadable",
+  "question": "Please indicate the document and page in the bid as submitted that show this requirement is met.",
+  "seconds": 229
+ },
+ {
+  "bidder": "PT. Empat Bintang Sempurna",
+  "row": 15,
+  "no": "2 (d)",
+  "label": "Clarification Required",
+  "shown": "Clarify To Bidder",
+  "finding": "not_substantiated",
+  "question": "Please indicate the document and page in the bid as submitted that show this requirement is met.",
+  "seconds": 252
+ },
+ {
+  "bidder": "PT. Empat Bintang Sempurna",
+  "row": 16,
+  "no": "3",
+  "label": "Clarification Required",
+  "shown": "Clarify To Bidder",
+  "finding": "evidence_unreadable",
+  "question": "Please indicate the document and page in the bid as submitted that show this requirement is met.",
+  "seconds": 247
+ },
+ {
+  "bidder": "PT. Empat Bintang Sempurna",
+  "row": 17,
+  "no": "8",
+  "label": "Clarification Required",
+  "shown": "Clarify To Bidder",
+  "finding": "not_substantiated",
+  "question": "Provide the Joint Operation Agreement as required by Requirement 8.",
+  "seconds": 178
+ }
+]

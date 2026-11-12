@@ -1,0 +1,22 @@
+[
+ {
+  "bidder": "PT. Empat Bintang Sempurna",
+  "row": 18,
+  "no": "5a",
+  "label": "Clarification Required",
+  "shown": "Clarify To Bidder",
+  "finding": "not_substantiated",
+  "question": "Please indicate the document and page in the bid as submitted that show this requirement is met.",
+  "seconds": 285
+ },
+ {
+  "bidder": "PT. Empat Bintang Sempurna",
+  "row": 21,
+  "no": "5d",
+  "label": "Clarification Required",
+  "shown": "Clarify To Bidder",
+  "finding": "not_substantiated",
+  "question": "Provide a document showing the legal capacity of PT Empat Bintang Sempurna to bind itself to contracts, specifically an ID card issued in the name of PT Empat Bintang Sempurna.",
+  "seconds": 302
+ }
+]
