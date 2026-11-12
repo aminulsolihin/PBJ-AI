@@ -1,6 +1,6 @@
 ---
 name: evaluate-tech-spec-v27
-description: "Evidence-strict technical bid evaluation for any spec sheet. Each bidder block gets one undated AI Evaluation column set (inserted once, updated in place; human columns never touched) with plain-language English notes, a blue Indonesian translation and a numbered \"file name - Google Drive link\" attached-document list. Coloured column-B rows are evaluated; white P/F rows get V = P. Builds per-bidder AMPC sheets (no title rows; a \"PC Assessment\" column with no labels, tags or \"AI\" wording) and bidder clarification sheets. Exports them to new Excel files in the open workbook's Google Drive folder: one AMPC Clarification file with a sheet per bidder and no compiled sheet, plus one file per bidder. Formatting is rebuilt and checked before upload, every file is byte-verified, and on \"move\" the sheets are removed from the workbook."
+description: "Evidence-strict technical bid evaluation for any spec sheet. Each bidder block gets one undated AI Evaluation column set (inserted once, updated in place; human columns never touched) with plain-language English notes, a blue Indonesian translation and a numbered \"file name - Google Drive link\" attached-document list. Coloured column-B rows are evaluated; white P/F rows get V = P. Builds per-bidder AMPC sheets on the AMPC Technical Clarification template (columns A–I: Row, Proposed Device Information, Requirements, Bidder Response, Supporting documents, PC Assesment, Context, AMPC Date/Response; no labels, tags or \"AI\" wording) and bidder clarification sheets. Exports them to new Excel files in the open workbook's Google Drive folder: one AMPC Clarification file with a sheet per bidder and no compiled sheet, plus one file per bidder. Formatting is rebuilt and checked before upload, every file is byte-verified, and on \"move\" the sheets are removed from the workbook."
 ---
 
 ## When to use
@@ -174,7 +174,7 @@ Row labels, comment balloons, highlights, boxes, arrows, stamps, row numbers in 
   - Service commitments start at acceptance.
 
 ## Questions: two audiences, two kinds of file (English)
-- **AMPC questions** (column G of the bidder's AMPC sheet and of the exported AMPC Clarification file):
+- **AMPC questions** (column G `Context` of the bidder's AMPC sheet and of the exported AMPC Clarification file):
   - Seek guidance: "We would appreciate AMPC's guidance on whether …", "Could AMPC advise / confirm …".
   - State the finding, then the decision point.
   - Ask for treatment "consistent with other bidders" where relevant.
@@ -249,53 +249,102 @@ With calculation suspended:
 **Done when:** the gate passes and SCORE evaluates.
 **Rule:** never write into a human set; never create a second AI set or extra link columns.
 
-### 6a. Per-bidder AMPC sheet `AMPC Clarif <pkg> - <bidder>` (A–H)
-If an AMPC sheet exists, copy it as the template; otherwise build one. **No title, bidder or count rows:** the table starts in row 1. The sheet name is the only bidder identifier, so keep the bidder's short name in it.
-- **Row 1 (groups;** fill #D9E1F2, bold, centred): D1 `BID AS SUBMITTED` | E1:F1 `EVALUATION` (merged) | G1:H1 `AMPC GUIDANCE` (merged).
-- **Row 2 (headers;** fill #1F4E78, white bold, centred, wrap, height 45): `Row no.` | `Requirement` | `Specification` | `Bidder Response (tick + device details)` | `Attached Document` | `PC Assessment` | `Guidance Sought from AMPC (Expert Consultant)` | `AMPC Advice`.
-- **Rows 3–4: brand / model** (fill #F2F2F2). A–C are formulas to the spec rows; D is the bidder's brand or model; E–H are blank.
-- **Items from row 5,** in spec order:
-  - A–C: formulas to the spec sheet.
-  - D: `=IF(<Yes><>"",<Yes>,<No>)&CHAR(10)&<details>`.
-  - E: `=<AI ATTACHED DOCUMENT cell>` (the numbered Drive-link list).
-  - F (PC Assessment): the English part of the AI note with the tag removed and no label: `=IFERROR(MID(N,FIND(" – ",N)+3,FIND(CHAR(10)&CHAR(10)&"ID: ",N)-FIND(" – ",N)-3),N)`, where N is the AI NOTES cell. Give it the fill and font colour of the row's AI label (Not Meet #FFC7CE / #9C0006, CR #FFEB9C / #9C5700), but no label text.
-  - G: the AMPC guidance question (static).
-  - H: blank. AMPC writes its advice here, in the exported AMPC Clarification file.
-- **No AI wording:** no "AI" in any header, and no label text (Meet / Not Meet / Clarification Required) or tags (Ambiguous, Conflict …) anywhere on the sheet.
-- **Format:** Calibri 11, wrap, top-aligned, thin borders, A centred. Widths 45, 150, 200, 200, 300, 280, 300, 220. Autofit rows 5+ and freeze 1:2.
-- **Sync on rerun:** rewrite the item rows from the AI set. Never delete rows that hold bidder responses or AMPC advice; mark them `Resolved` and grey.
+### 6a. Per-bidder AMPC sheet `AMPC Clarif <pkg> - <bidder>` (A–I, AMPC Technical Clarification template)
+Every AMPC sheet follows the AMPC Technical Clarification template (`Template AMPC Technical Clarification.xlsx`, one sheet, columns A–I).
+- If the user uploads the template, insert it with `insertWorksheetsFromBase64`, rename it and fill it.
+- Otherwise build the layout below exactly.
+- If this bidder's AMPC sheet already exists, sync it in place.
+
+**Whole sheet:**
+- Font Arial, black (headers 12, items 11).
+- Thin borders on A4:I<last>.
+- No "AI" wording anywhere.
+- No label text (Meet / Not Meet / Clarification Required) and no tags (Ambiguous, Conflict …).
+
+**Rows 1–3:** blank (heights 17, 13, 13). No title, package or count text.
+
+**Rows 4–5: headers.** Arial 12 bold, centred horizontally and vertically, wrap, heights 28.5 and 34. Write the text exactly, including the template's spelling `PC Assesment`.
+
+| Cells | Text | Fill |
+|---|---|---|
+| A4:A5 (merged) | `Row` | #FFFF00 |
+| B4:B5 (merged) | `PROPOSED DEVICE INFORMATION` | #FFFF00 |
+| C4:C5 (merged) | `Requirements` | #FFFF00 |
+| D4:G4 (merged) | `BIDDER CLARIFICATION` | #A2C4C9 |
+| D5 | `Bidder Response` | #A2C4C9 |
+| E5 | `Supporting documents` + line break + `(Make sure link is Open)` | #A2C4C9 |
+| F5 | `PC Assesment` | #A2C4C9 |
+| G5 | `Context` | #A2C4C9 |
+| H4:I4 (merged) | `AMPC RESPONSE` | #FBD9D7 |
+| H5 | `Date` | #FBD9D7 |
+| I5 | `Response` | #FBD9D7 |
+
+**Rows 6–8: bidder identity.** Row height 16, no fills except the trellis block.
+- B6 `Bidder Name` (Arial 10 bold); B7 `Brand/Manufacturer Name` and B8 `Model Name` (Arial 11 bold).
+- C6:C8 merged, holding `-`.
+- D6: the bidder's full name, from `='Resume BIDDERS'!$C$<n>` or the bidder block's row-3 header.
+- D7: the brand/manufacturer; D8: the model. Take both from the bidder's PROPOSED DEVICE INFORMATION rows.
+- A6:A8 and E6:E8 stay blank.
+- F6:I8 merged with a light-trellis pattern fill and no text.
+
+**Items from row 9,** one row per flagged row, in spec order. Arial 11, wrap, top-aligned.
+- A: the spec row number, centred.
+- B: `=<spec sheet>!B<r>` (the requirement), bold. Fill it with the spec row's column-B colour: green #92D050 (Required) or orange #FFC000 (Preferred). Set the number format to `General`, because the template's `@` would turn the formula into text.
+- C: `=<spec sheet>!C<r>` (the specification), white fill.
+- D: `=IF(<Yes><>"",<Yes>,<No>)&CHAR(10)&<details>`.
+- E: `=<AI ATTACHED DOCUMENT cell>` (the numbered Drive-link list).
+- F (PC Assesment): the English part of the AI note, with the tag and label removed: `=IFERROR(MID(N,FIND(" – ",N)+3,FIND(CHAR(10)&CHAR(10)&"ID: ",N)-FIND(" – ",N)-3),N)`, where N is the AI NOTES cell. Give it the fill and font colour of the row's AI label (Not Meet #FFC7CE / #9C0006, CR #FFEB9C / #9C5700), but no label text.
+- G (Context): the AMPC guidance question (static), per "Questions".
+- H (Date) and I (Response): blank. AMPC fills them in the exported AMPC Clarification file.
+
+**Layout:**
+- Column widths:
+
+  | | A | B | C | D | E | F | G | H | I |
+  |---|---|---|---|---|---|---|---|---|---|
+  | Characters | 8.2 | 30.2 | 33.3 | 26.2 | 40 | 45 | 29.5 | 14.8 | 61.7 |
+  | Office.js points | 47 | 162 | 179 | 141 | 214 | 240 | 159 | 87 | 328 |
+
+  These are the template widths, except E and F. The template's 13 is too narrow for the document list and the assessment.
+- Autofit rows 9+ with a minimum height of 30.
+- Freeze rows 1–5.
+
+**Sync on rerun:**
+- Rewrite the item rows from the AI set.
+- Never delete a row that holds an AMPC Date/Response or a bidder response. Mark it `Resolved` in G and grey A–G.
 
 **Done when:**
-- The item rows = the flagged rows.
-- The headers match exactly, and none contains "AI".
+- The item rows (row 9 down) = the flagged rows.
+- Rows 4–5 match the table above exactly (text, merges, fills), and no header contains "AI".
+- Rows 6–8 hold the bidder name, brand and model, and F6:I8 is the merged trellis block.
 - No F cell starts with a label or tag.
 - E and F point to the AI set, and G contains "AMPC".
 - There are no errors and no text-formatted formulas.
-- Freeze is 1:2.
+- Freeze is 1:5.
 
-### 6b. Compiled AMPC overview `AMPC Clarif <pkg> - Compiled` (A–I): optional and internal
+### 6b. Compiled AMPC overview `AMPC Clarif <pkg> - Compiled` (A–J): optional and internal
 Build or sync this only when the user asks for a compiled view.
 - It is never exported, because the AMPC file holds one sheet per bidder.
 - On "move" it is removed together with the per-bidder sheets.
 
 Layout:
 - **Position:** immediately before the first per-bidder AMPC sheet.
-- **Rows 1–2:** copyFrom the per-bidder A1:H2 (all) to B1:I2, copy the A1:A2 formats and set A2 = `Bidder`. Row heights: 18.5 and 45.
-- **One block per bidder,** in Resume BIDDERS order, covering per-bidder rows 3…last:
+- **Rows 1–3:** blank.
+- **Rows 4–5:** copyFrom (all) the per-bidder A4:I5 to B4:J5. Merge A4:A5, set it to `Bidder` and give it the same yellow header format.
+- **One block per bidder,** in Resume BIDDERS order, covering per-bidder rows 9…last (the identity rows 6–8 are not repeated):
   - A: `='Resume BIDDERS'!$C$<n>`.
-  - B–E: per-bidder A–D, on all rows.
-  - F–I: per-bidder E–H, on item rows only. I = `=IF(<H>="","",<H>)`.
+  - B–J: per-bidder A–I. H–J use `=IF(<x>="","",<x>)` so blank cells don't show 0.
 - **Formats:**
-  1. copyFrom (formats) per-bidder A3:H<last> → B:I, and per-bidder B → A.
-  2. Set A–I to `General` and re-enter the formulas.
-  3. Widths 160, 45, 150, 200, 200, 300, 280, 300, 220.
-  4. Autofit rows 3+ and freeze 1:2.
+  1. copyFrom (formats) per-bidder A9:I<last> → B:J, and per-bidder C → A.
+  2. Set A–J to `General` and re-enter the formulas.
+  3. Widths in points: 160, then the per-bidder widths for B–J.
+  4. Autofit rows 6+ and freeze 1:5.
 
 **Done when:**
 - Every flagged row of every bidder appears exactly once.
 - There are no errors, and no cell value starts with "=".
 - There is no "AI" wording.
-- Freeze is 1:2.
+- Freeze is 1:5.
 
 ### 6c. Bidder sheet `Clarif Bidder <pkg> - <bidder>`
 - Title and bidder line.
@@ -351,18 +400,19 @@ Run this step only when asked ("move / export / save … to new Excel files").
    - Call `writeBuffer({useSharedStrings:true, zip:{compression:'DEFLATE', compressionOptions:{level:9}}})`, convert to base64 and store it in blob `export_<key>_b64`.
    - **Format check:** reload the buffer with ExcelJS and confirm:
      - The sheet names, the row counts, and that no value is an error.
-     - Fills and fonts:
-       - the column-header row is `FF1F4E78` with white bold text;
-       - the group row is `FFD9E1F2`;
-       - the brand/model rows are `FFF2F2F2`;
-       - the PC Assessment cells keep their label fills (`FFFFEB9C` / `FFFFC7CE`).
-     - The item rows have thin borders.
+     - AMPC sheets match the 6a template:
+       - Rows 1–3 are blank.
+       - Rows 4–5 have the exact header text, Arial 12 bold black, the merges A4:A5, B4:B5, C4:C5, D4:G4 and H4:I4, and the fills `FFFFFF00` (A–C), `FFA2C4C9` (D–G) and `FFFBD9D7` (H–I).
+       - Rows 6–8 hold the bidder name, brand and model; C6:C8 and F6:I8 are merged, and F6:I8 has `{type:'pattern', pattern:'lightTrellis'}`. `getCellProperties` does not return the trellis, so always set it explicitly.
+       - In the item rows, B keeps the spec fills (`FF92D050` / `FFFFC000`) and F keeps the label fills (`FFFFEB9C` / `FFFFC7CE`).
+       - A4:I<last> has thin borders, and the font is Arial throughout.
+     - Bidder sheets keep the 6c layout.
 
-     If anything is missing, apply this house style explicitly and rebuild.
+     If anything is missing, apply the 6a / 6c format explicitly and rebuild.
 4. **Render check** (before any upload):
    1. Copy the built workbook in ExcelJS with its sheets renamed `TMP_1`, `TMP_2` … (so they don't clash with existing names).
    2. Insert it with `insertWorksheetsFromBase64` (positionType end).
-   3. Look at `getImage` of A1:H6 for an AMPC sheet and A1:G7 for a bidder sheet (attachImage).
+   3. Look at `getImage` of A4:I10 for an AMPC sheet and A1:G7 for a bidder sheet (attachImage).
    4. Delete the TMP sheets.
 
    If fills, borders or text look wrong, fix and rebuild.
@@ -408,8 +458,9 @@ Run this step only when asked ("move / export / save … to new Excel files").
 
 Remind the user to:
 1. Save the workbook.
-2. Send the AMPC Clarification file for guidance (AMPC writes its advice in column H of each bidder sheet).
-3. After AMPC's advice, issue each bidder file in writing with a deadline.
+2. Before sending, make sure AMPC can open every Drive link in the Supporting documents column (the template asks for open links). The skill never changes sharing settings.
+3. Send the AMPC Clarification file for guidance. AMPC writes the Date and its Response in columns H–I of each bidder sheet.
+4. After AMPC's advice, issue each bidder file in writing with a deadline.
 
 ## Modes
 - **Continue** (next bidder) · **Recheck / Re-evaluate** (new documents → rerun in place) · **Re-verify self-claims** (same standard for all bidders) · **Apply white-row rule** · **Clarification only / Sync** (6a, 6c).
@@ -439,7 +490,7 @@ Remind the user to:
 - Accept device capability on a letter, calculation, brochure or self-declaration alone, or label a row Meet because the bidder ticked Yes.
 - Assess or clarify white rows.
 - Mix label sets, or omit flagged rows.
-- Put title/bidder/count rows, AI labels, tags or the word "AI" on any AMPC sheet.
+- Put a title, package or count text, AI labels, tags or the word "AI" on any AMPC sheet, or depart from the AMPC Technical Clarification template layout (6a).
 - Export the compiled overview, put AMPC content in a bidder file, or put two bidders in one bidder file.
 - Upload a file before its format and render checks pass.
 - Save exported files anywhere but the open workbook's own Drive folder, or share them.
