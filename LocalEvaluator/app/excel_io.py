@@ -268,7 +268,10 @@ def profile(ws):
         end = heads[i + 1][0] if i + 1 < len(heads) else len(grid)
         rows = _parse_rows(grid, hr + span, end, c_no, c_req, c_doc)
         title = next((v for v in (grid[top] if grouped else []) if v), "")
+        # every heading text of the table: KSO partner names often head their own columns
+        texts = [v for r in head_rows for v in grid[r] if v and AI not in v]
         blocks.append({"bidder": name, "headerRow": hr + 1, "headerTop": top + 1, "headerBottom": hr + span,
+                       "headerTexts": list(dict.fromkeys(texts)),
                        "cols": {"no": c_no + 1, "req": c_req + 1, "doc": (c_doc + 1) if c_doc is not None else None},
                        "human": [c + 1 for c in human], "aiCols": [c + 1 for c in ai_cols], "lastHead": last_head + 1,
                        "rows": rows, "title": title})

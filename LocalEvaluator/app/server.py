@@ -36,6 +36,7 @@ if sys.stdout is None or not DEV_HTTP:           # started without a console: lo
     sys.stdout = sys.stderr = open(os.path.join(DATA, "engine.log"), "a", encoding="utf-8", buffering=1)
 
 import criteria  # noqa: E402
+import deep      # noqa: E402
 import engine    # noqa: E402
 import launcher  # noqa: E402
 from docs import index_folder  # noqa: E402
@@ -49,7 +50,9 @@ except ImportError:
     EXCEL_LINK = False
 
 SETTINGS_FILE = os.path.join(DATA, "settings.json")
-DEFAULTS = {"model": "qwen3-vl:8b", "numCtx": 8192, "excerptChars": 9000, "expandKeywords": True}
+# carefulCtx / evidenceChars: the checked pipeline (deep.py): plan -> choose documents -> judge -> verify
+DEFAULTS = {"model": "qwen3-vl:8b", "numCtx": 8192, "excerptChars": 9000, "expandKeywords": True,
+            "carefulCtx": 16384, "evidenceChars": 18000}
 MIME = {".html": "text/html; charset=utf-8", ".js": "text/javascript; charset=utf-8", ".css": "text/css; charset=utf-8",
         ".png": "image/png", ".json": "application/json", ".map": "application/json", ".svg": "image/svg+xml",
         ".xml": "text/xml", ".ico": "image/x-icon", ".txt": "text/plain; charset=utf-8"}
@@ -226,6 +229,7 @@ class Job:
         self.total = self.done = 0
         self.started = time.time()
         self.cancel = False
+        self.current = None                     # the requirement being evaluated now
 
     def say(self, message):
         stamp = datetime.datetime.now().strftime("%H:%M:%S")
@@ -237,9 +241,20 @@ class Job:
         if self.state == "running" and self.results:
             per = sum(r.get("seconds", 0) for r in self.results) / len(self.results)
             eta = round(per * (self.total - self.done))
+        now = time.time()
+        live = None
+        if self.state == "running":
+            a = dict(engine.ACTIVITY)
+            busy = a["phase"] != "idle" and a["call_started"]
+            live = {"step": a["step"], "phase": a["phase"], "tokens": a["tokens"],
+                    "reasoningTokens": a["reasoning_tokens"], "budget": a["budget"],
+                    "callSeconds": round(now - a["call_started"]) if busy else None,
+                    "quietSeconds": round(now - (a["last_output"] or a["call_started"])) if busy else None}
+            if self.current:
+                live.update(self.current, itemSeconds=round(now - self.current["started"]))
         return {"state": self.state, "title": self.title, "error": self.error, "total": self.total,
                 "done": self.done, "log": self.log[-200:], "results": self.results[-300:],
-                "elapsed": round(time.time() - self.started), "eta": eta}
+                "elapsed": round(now - self.started), "eta": eta, "live": live}
 
 
 JOB = Job()
@@ -298,16 +313,35 @@ def run_evaluation(p):
                     f"{len(unread)} could not be read.")
             for bad in unread[:10]:
                 JOB.say(f"    not readable: {bad}")
+            failed = [d for d in docs if d["status"] == "error"]
+            if failed:
+                # Judging with files missing produces confident but wrong "no document" verdicts.
+                JOB.say(f"  Skipped: {len(failed)} file(s) could not be opened, so this bidder is not evaluated. "
+                        f"If the folder is on Google Drive or OneDrive, right-click it and choose "
+                        f"'Available offline' / 'Always keep on this device', then run again.")
+                for d in failed[:10]:
+                    JOB.say(f"    {d['name']}: {d.get('note', '')[-120:]}")
+                JOB.total -= len(items)
+                continue
             chunks = engine.make_chunks(docs)
             extras = excel_io.with_retry(lambda: excel_io.row_extras(ws, t))
-            mine, pending = [], []
+            mine, pending, details, state = [], [], [], {}
             for it in items:
                 if JOB.cancel:
                     raise engine.Cancelled()
-                JOB.say(f"  Requirement {it['no']} (row {it['row']}): thinking...")
-                res = engine.evaluate_item(dict(it, extra=extras.get(it["row"], [])), name, t["title"] or prof["title"],
-                                           docs, chunks, settings, os.path.join(DATA, "keywords.json"),
-                                           lambda: JOB.cancel, lambda m: JOB.say("  " + m))
+                JOB.say(f"  Requirement {it['no']} (row {it['row']}): started")
+                JOB.current = {"no": it["no"], "row": it["row"], "bidder": name, "started": time.time(),
+                               "position": JOB.done + 1}
+                item = dict(it, extra=extras.get(it["row"], []))
+                # Every claim must be supported by the documents, so only the checked pipeline (deep.py) is used.
+                res = deep.evaluate_item(item, name, t["title"] or prof["title"], docs, chunks, settings, DATA,
+                                         lambda: JOB.cancel, lambda m: JOB.say("  " + m),
+                                         partner_hints=t.get("headerTexts", []), state=state)
+                # what each check found, with quotes and pages: the audit trail behind the cell text
+                details.append({"row": it["row"], "no": it["no"], "finding": res["finding"],
+                                "plan": res["plan"], "checks": res["checks"], "read": res["excerpts"]})
+                with open(os.path.join(run_dir, f"details-{stamp}.json"), "w", encoding="utf-8") as fh:
+                    json.dump(details, fh, ensure_ascii=False, indent=1)
                 try:
                     excel_io.with_retry(lambda: excel_io.write_result(ws, it["row"], t["col"], res, prof["font"], shown), 120)
                 except pythoncom.com_error:

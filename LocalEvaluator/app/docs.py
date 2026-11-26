@@ -10,6 +10,7 @@ import os
 import shutil
 import subprocess
 import tempfile
+import time
 
 from criteria import read_docx_text
 
@@ -57,6 +58,25 @@ def run_ocr(image_paths):
         shutil.rmtree(tmp, ignore_errors=True)
 
 
+def read_bytes(path, tries=4):
+    """Read a whole file, retrying while a cloud-synced copy (Google Drive, OneDrive) is still downloading.
+
+    Reading the bytes is what makes Drive fetch an online-only file; opening it by path from a PDF
+    library can fail while the download is in progress.
+    """
+    for attempt in range(tries):
+        try:
+            with open(path, "rb") as fh:
+                data = fh.read()
+            if data or attempt == tries - 1:
+                return data
+        except OSError:
+            if attempt == tries - 1:
+                raise
+        time.sleep(2 * (attempt + 1))
+    return b""
+
+
 def _pdf(path, cancel):
     try:
         import pymupdf as fitz
@@ -66,7 +86,7 @@ def _pdf(path, cancel):
     pages, ocr_count, note = [], 0, ""
     tmp = tempfile.mkdtemp(prefix="le_pdf_")
     try:
-        with fitz.open(path) as doc:
+        with fitz.open(stream=read_bytes(path), filetype="pdf") as doc:
             if doc.needs_pass:
                 return [], 0, "password-protected"
             todo = []
@@ -164,7 +184,9 @@ def index_folder(folder, cache_dir, log=print, cancel=lambda: False):
         if cancel():
             break
         st = os.stat(full)
-        key = hashlib.sha1(f"{full.lower()}|{st.st_size}|{int(st.st_mtime)}|v2".encode("utf-8")).hexdigest()
+        # v3: earlier versions cached "could not open" results, which then stuck for good
+        # path written with backslashes, so "G:/x" and "G:\x" find the same cached reading
+        key = hashlib.sha1(f"{full.replace('/', chr(92)).lower()}|{st.st_size}|{int(st.st_mtime)}|v3".encode("utf-8")).hexdigest()
         cache = os.path.join(cache_dir, key + ".json")
         rec = None
         if os.path.exists(cache):
@@ -179,7 +201,9 @@ def index_folder(folder, cache_dir, log=print, cancel=lambda: False):
                 rec = extract(full, cancel)
             except Exception as exc:  # one bad file must not stop the run
                 rec = {"pages": [], "ocr": 0, "status": "error", "note": str(exc)[:200]}
-            if not cancel():
+            # A failure to open is often temporary (file still syncing, locked by another program):
+            # never cache it, so the next run tries again.
+            if not cancel() and rec["status"] != "error":
                 with open(cache, "w", encoding="utf-8") as fh:
                     json.dump(rec, fh, ensure_ascii=False)
         rec = dict(rec, name=rel.replace("\\", "/"), path=full)

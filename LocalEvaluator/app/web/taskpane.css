@@ -70,3 +70,19 @@ pre { margin: 6px 0 0; padding: 8px; background: var(--panel); border: 1px solid
 .ask-box p { margin: 0 0 10px; white-space: pre-line; }
 .ask-buttons { display: flex; flex-direction: column; gap: 6px; }
 .ask-buttons button { margin: 0; }
+
+/* "Still working" box, pinned in the header while an evaluation runs */
+.busy { margin-top: 8px; padding: 8px 10px; border-radius: 4px; border: 1px solid var(--accent); background: var(--panel); font-size: 12px; }
+.busy-top { display: flex; align-items: center; gap: 7px; }
+.busy-top b { font-weight: 600; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.busy-clock { color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.busy-step { margin-top: 3px; }
+.busy-pulse { margin-top: 2px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.busy.quiet { border-color: var(--cr-ink); }
+.busy.quiet .busy-pulse { color: var(--cr-ink); }
+.spinner { width: 12px; height: 12px; flex: none; border-radius: 50%; border: 2px solid var(--line); border-top-color: var(--accent); animation: spin 1s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+/* the bar moves only when a requirement finishes (often an hour), so it shimmers while work goes on */
+.bar.running #run-bar { min-width: 6%; background-image: linear-gradient(90deg, transparent 0, rgba(255,255,255,.45) 50%, transparent 100%); background-size: 60px 100%; background-repeat: no-repeat; animation: shimmer 1.6s linear infinite; }
+@keyframes shimmer { from { background-position: -60px 0; } to { background-position: 400px 0; } }
+@media (prefers-reduced-motion: reduce) { .spinner, .bar.running #run-bar { animation: none; } }

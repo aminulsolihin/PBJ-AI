@@ -30,33 +30,48 @@
     "Doc Required" and any threshold columns are read when present. Each procurement package can have its own sheets.</li>
   <li><b>Bidders.</b> For a block-per-bidder sheet, click <i>Add AI Evaluation columns</i> once; the bidders are taken from the sheet. For a one-table sheet, add each bidder by name. Then give each bidder a documents folder (PDF, Word, Excel, images, text). <i>Find folders automatically</i> matches bidder names to the sub-folders of a folder you choose. Folders are remembered for the workbook, across its sheets.<br>
   <b>More bidders than the form has room for:</b> on a block-per-bidder workbook, <i>Add a bidder</i> creates a new block on every bidder sheet and a new row on the summary sheet the names come from. It copies the first block, empties what evaluators typed for the first bidder, and rewires the formulas to the new block. Existing rows are not changed, and a copy of the workbook as it was is saved under <code>C:\LocalEvaluator\data\backups</code>. Sheets with a fixed grid of bidder slots (such as scoring forms) are not extended; the pane names them.</li>
-  <li><b>Evaluate.</b> One bidder or all. The engine reads the folder (scanned pages are recognised with the Windows text recogniser), finds the pages that relate to each requirement, and asks the model for a finding. The sheet fills in row by row; you can keep working in Excel.</li>
+  <li><b>Evaluate.</b> One bidder or all. The engine reads the folder (scanned pages are recognised with the Windows text recogniser), then for each requirement:
+    <ol>
+      <li><b>Plan.</b> The model breaks the requirement into 1 to 4 checks: what must be shown, by whom (the bidder, each KSO partner, the manufacturer), any condition and any minimum. This is done once per requirement and reused for every bidder.</li>
+      <li><b>Choose.</b> The engine picks the files to read from your evaluators' notes in the sheet, the file names and a keyword search; for a check needed from each KSO partner it takes each partner's own file.</li>
+      <li><b>Judge.</b> The model reads those files, reasons step by step, and answers each check with the exact words it relies on and their page.</li>
+      <li><b>Verify.</b> The engine checks every answer against the pages (see below) and sets the verdict by fixed rules.</li>
+      <li><b>Write.</b> The model writes the note from the verified answers only.</li>
+    </ol>
+    The sheet fills in row by row; you can keep working in Excel.</li>
 </ol>
 
 <h2>What it writes</h2>
 <ul>
   <li>Three columns to the right of your table: REMARKS, NOTES and ATTACHED DOCUMENT, each marked "(AI Evaluation)". Nothing else is ever written; your own Document Reference, Determination and Remark columns are never touched, so summary sheets that read them are unaffected.</li>
   <li><b>Verdict:</b> in the sheet's own words, taken from the dropdown of your verdict column (for example Qualified / Not Qualified / Clarify To Bidder), otherwise Meet / Not Meet / Clarification Required.</li>
-  <li><b>Note:</b> plain English in black, then "ID:" and the Bahasa Indonesia translation in blue.</li>
+  <li><b>Note:</b> plain English, then an <b>Evidence / Bukti</b> list: for every check and partner, the file, page and exact words relied on, or why nothing was accepted, and the documents that were read. Then "ID:" and the Bahasa Indonesia note in blue.</li>
   <li><b>Attached document:</b> a numbered list of the files and pages relied on. A cell with one file opens that file when clicked.</li>
 </ul>
 
-<h2>Checks done by fixed rules, not by the model</h2>
+<h2>Every statement must be supported by the documents</h2>
+<p>The model's answers are never taken on trust. The engine checks each one against the pages the model was actually shown; anything it cannot confirm becomes <b>Clarification Required</b>, never Meet or Not Meet.</p>
 <ul>
-  <li>The verdict follows a fixed decision table from the model's finding.</li>
-  <li>A "met" finding must cite a page that was actually read; otherwise it becomes a clarification.</li>
-  <li>A document whose printed validity ended before today is treated as expired.</li>
-  <li>A document in another company's name is not accepted without clarification (except where the requirement is about the manufacturer).</li>
-  <li>A figure below the stated minimum is flagged for a hand check.</li>
-  <li>"Nothing found" becomes a clarification when some files could not be read.</li>
+  <li>Every Meet, Not Meet or "own statement only" answer must quote the page it relies on, word for word, and the quote must be on that page. A file the model was not shown cannot be cited. The Evidence list shows the words as printed on the page.</li>
+  <li>A second, separate look sees only the check and the quoted words and must agree that those words themselves show the answer. A real quote that is about something else (for example a clause on profit shares cited for "not signed") is not accepted.</li>
+  <li>Not Meet needs a page that shows the failure; something the pages simply do not show is never Not Meet. Signatures are images the engine cannot see, so signing is shown by the signing sentence or the signatories' names.</li>
+  <li>The company name, validity date and figure the model reports must be printed on that page; otherwise they are ignored, and a minimum-amount check becomes a clarification.</li>
+  <li>For a KSO, a check needed from each partner needs each partner's own document, and the page must name that partner. A partner without one is "not found", so a KSO never passes on one partner's papers. Where the sheet does not say, statements, licences, registrations, tax papers, deeds, identity papers and powers of attorney are required from each partner; experience, capacity, finances and the KSO agreement from the bidder as a whole.</li>
+  <li>"Not applicable" needs a quote, unless the engine itself confirms it (a KSO-only requirement and a single-company bidder).</li>
+  <li>A document whose printed validity ended before today is expired; a figure below the minimum, or a document in another company's name, is a clarification.</li>
+  <li>A minimum in the plan must appear in the requirement or the sheet; a made-up threshold is dropped.</li>
+  <li>The written note is checked too: every number, company name and description must come from the quoted evidence, and file names are not allowed. A note that fails is written again once, otherwise a plain note built from the quotes is used.</li>
+  <li>"Nothing found" becomes a clarification when some files could not be read, and a bidder whose files cannot be opened is not evaluated at all.</li>
+  <li>The plan, every answer, its quote and page, and what the engine accepted or rejected are saved per run under <code>C:\LocalEvaluator\data\runs</code>.</li>
 </ul>
 
 <h2>Limits to keep in mind</h2>
 <ul>
-  <li>The result is a draft from a small local model. Check every row against the documents before the Committee relies on it.</li>
-  <li>Each requirement takes a few minutes on this laptop. Close other programs to free memory.</li>
+  <li>The result is a draft from a small local model. A clarification often means the engine could not confirm an answer, not that the bidder failed: check those rows against the documents.</li>
+  <li>Careful checking is slow on this laptop: about 1 to 1½ hours per requirement for each bidder, most of it the model reading and reasoning. Run large evaluations overnight and close other programs to free memory.</li>
   <li>Sums, averages and date arithmetic (turnover, years of experience) are the model's weakest area; verify those rows by hand.</li>
-  <li>Evaluating again clears Excel's Undo history for the sheet. The previous AI columns are saved under <code>C:\LocalEvaluator\data\runs</code>.</li>
+  <li>Bid folders on Google Drive must be available offline (right-click the folder, Available offline), or files cannot be opened.</li>
+  <li>Evaluating again clears Excel's Undo history for the sheet. The previous AI columns are saved under C:\LocalEvaluator\data\runs.</li>
 </ul>
 
 <h2>Keeping it offline</h2>

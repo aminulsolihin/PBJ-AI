@@ -62,8 +62,7 @@ async function refreshStatus() {
   const sel = $("s-model");
   sel.replaceChildren(...s.models.map((m) => el("option", { value: m, textContent: m })));
   if (s.models.includes(s.settings.model)) sel.value = s.settings.model;
-  $("s-expand").checked = !!s.settings.expandKeywords;
-  $("s-chars").value = String(s.settings.excerptChars);
+  $("s-chars").value = String(s.settings.evidenceChars);
   if (!s.ollama) banner("The local model service (Ollama) is not running. Start Ollama, then reopen this pane.");
   else if (!s.models.length) banner("No local model is installed in Ollama.");
   else if (!s.models.includes(s.settings.model)) banner(`Model "${s.settings.model}" is not installed. Choose another under Settings.`, true);
@@ -215,9 +214,48 @@ function fmt(sec) {
   return m < 1 ? "under a minute" : m < 60 ? `${m} min` : `${Math.floor(m / 60)} h ${m % 60} min`;
 }
 
+function dur(sec) {
+  if (sec == null) return "";
+  const h = Math.floor(sec / 3600), m = Math.floor((sec % 3600) / 60), s = sec % 60;
+  return h ? `${h} h ${String(m).padStart(2, "0")} min` : m ? `${m} min ${String(s).padStart(2, "0")} s` : `${s} s`;
+}
+
+/* The pinned "still working" box: which requirement, which step, and a live sign of the model's
+   output, so an hour-long step never looks frozen. */
+function renderBusy(j) {
+  const box = $("busy");
+  if (j.state !== "running") { box.hidden = true; return; }
+  box.hidden = false;
+  const live = j.live || {};
+  const last = j.log.length ? j.log[j.log.length - 1].replace(/^\S+\s+/, "").trim() : "";
+  $("busy-title").textContent = live.no != null
+    ? `Evaluating requirement ${live.no} · ${live.position} of ${j.total || "?"}` + (live.bidder ? ` · ${live.bidder}` : "")
+    : "Evaluating · preparing";
+  $("busy-clock").textContent = live.itemSeconds != null ? dur(live.itemSeconds) : dur(j.elapsed);
+  $("busy-clock").title = live.itemSeconds != null ? "Time spent on this requirement" : "Time since the evaluation started";
+  $("busy-step").textContent = (live.no != null && live.step) ? live.step : last;
+  let pulse = "Working…", quiet = false;
+  const n = (x) => Number(x || 0).toLocaleString();
+  if (live.phase === "reading") {
+    pulse = `The model is taking in the pages; no output yet (${dur(live.callSeconds)}). This part can take 10 to 20 minutes.`;
+    quiet = live.callSeconds > 45 * 60;
+  } else if (live.phase === "reasoning") {
+    pulse = `Model reasoning: ${n(live.reasoningTokens)} word pieces so far (up to ${n(live.budget)}) · last output ${dur(live.quietSeconds)} ago`;
+    quiet = live.quietSeconds > 180;
+  } else if (live.phase === "answering") {
+    pulse = `Model writing its answer: ${n(live.tokens - live.reasoningTokens)} word pieces · last output ${dur(live.quietSeconds)} ago`;
+    quiet = live.quietSeconds > 180;
+  }
+  if (quiet) pulse += ". No output for a long time: if this lasts, check that Ollama is still running, or press Stop.";
+  $("busy-pulse").textContent = pulse;
+  box.classList.toggle("quiet", quiet);
+}
+
 function renderJob(j) {
+  renderBusy(j);
   $("run-title").textContent = j.title ? "· " + j.title : "";
   $("run-bar").style.width = (j.total ? Math.round((100 * j.done) / j.total) : 0) + "%";
+  $("run-bar").parentElement.classList.toggle("running", j.state === "running");
   const running = j.state === "running";
   $("run-stop").hidden = !running;
   const last = j.log.length ? j.log[j.log.length - 1].replace(/^\S+\s+/, "") : "";
@@ -281,8 +319,8 @@ function wire() {
       : `${r.name} now has its own Local Evaluator pane and is opening. Use the pane in that workbook.`, true);
   });
   const saveSettings = () => guard(null, () => api("/api/settings", {
-    model: $("s-model").value, expandKeywords: $("s-expand").checked, excerptChars: Number($("s-chars").value) }));
-  $("s-model").onchange = $("s-expand").onchange = $("s-chars").onchange = saveSettings;
+    model: $("s-model").value, evidenceChars: Number($("s-chars").value) }));
+  $("s-model").onchange = $("s-chars").onchange = saveSettings;
   window.addEventListener("focus", () => { if (!pollTimer) refreshLayout(); });
 }
 

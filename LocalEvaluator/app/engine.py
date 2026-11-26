@@ -14,7 +14,9 @@ import os
 import re
 import time
 
-OLLAMA_HOST, OLLAMA_PORT = "127.0.0.1", 11434   # loopback only, by design
+# Loopback only, by design. A private port, not Ollama's usual 11434: another Ollama (for example one
+# running inside WSL, which forwards its port to Windows) can hold 11434 without having our models.
+OLLAMA_HOST, OLLAMA_PORT = "127.0.0.1", int(os.environ.get("LE_OLLAMA_PORT", "11435"))
 
 
 class Cancelled(Exception):
@@ -45,7 +47,11 @@ def ensure_ollama(wait=25):
     exe = shutil.which("ollama") or os.path.join(os.environ.get("LOCALAPPDATA", ""), "Programs", "Ollama", "ollama.exe")
     if not os.path.isfile(exe):
         return False
-    env = dict(os.environ, OLLAMA_HOST=f"{OLLAMA_HOST}:{OLLAMA_PORT}", OLLAMA_NO_CLOUD="1")   # this computer only
+    env = dict(os.environ, OLLAMA_HOST=f"{OLLAMA_HOST}:{OLLAMA_PORT}", OLLAMA_NO_CLOUD="1",   # this computer only
+               # 16 GB laptops: one model and one request at a time, and a compact (8-bit) attention cache,
+               # so long documents plus the model's reasoning fit in memory
+               OLLAMA_MAX_LOADED_MODELS="1", OLLAMA_NUM_PARALLEL="1",
+               OLLAMA_FLASH_ATTENTION="1", OLLAMA_KV_CACHE_TYPE="q8_0")
     try:
         subprocess.Popen([exe, "serve"], env=env, creationflags=0x08000000,
                          stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
@@ -61,15 +67,28 @@ def ensure_ollama(wait=25):
     return False
 
 
-def ollama_chat(model, system, user, schema, cancel=lambda: False, num_ctx=8192, num_predict=900):
-    """One structured-output chat call, streamed so it can be cancelled."""
+# What the model is doing right now, for the pane: shown so a long step is visibly alive.
+# phase: "reading" (taking in the prompt, no output yet), "reasoning", "answering" or "idle".
+ACTIVITY = {"step": "", "phase": "idle", "call_started": None, "last_output": None, "tokens": 0,
+            "reasoning_tokens": 0, "budget": 0}
+
+
+def ollama_chat(model, system, user, schema, cancel=lambda: False, num_ctx=8192, num_predict=900, think=False):
+    """One structured-output chat call, streamed so it can be cancelled.
+
+    With think=True the model reasons first (slower, more accurate); the reasoning is kept apart
+    from the structured answer.
+    """
     body = json.dumps({
-        "model": model, "stream": True, "think": False, "format": schema, "keep_alive": "30m",
+        "model": model, "stream": True, "think": bool(think), "format": schema, "keep_alive": "30m",
         "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}],
         "options": {"temperature": 0, "num_ctx": num_ctx, "num_predict": num_predict},
     })
     conn = http.client.HTTPConnection(OLLAMA_HOST, OLLAMA_PORT, timeout=3600)
     text, side, stats = "", "", {}
+    now = time.time()
+    ACTIVITY.update(phase="reading", call_started=now, last_output=None, tokens=0, reasoning_tokens=0,
+                    budget=num_predict)
     try:
         conn.request("POST", "/api/chat", body, {"Content-Type": "application/json"})
         resp = conn.getresponse()
@@ -86,13 +105,23 @@ def ollama_chat(model, system, user, schema, cancel=lambda: False, num_ctx=8192,
             msg = obj.get("message", {})
             text += msg.get("content") or ""
             side += msg.get("thinking") or ""
+            if msg.get("thinking") or msg.get("content"):
+                ACTIVITY["tokens"] += 1
+                ACTIVITY["last_output"] = time.time()
+                if msg.get("thinking") and think:
+                    ACTIVITY["reasoning_tokens"] += 1
+                    ACTIVITY["phase"] = "reasoning"
+                else:
+                    ACTIVITY["phase"] = "answering"
             if obj.get("done"):
                 stats = obj
     finally:
         conn.close()
+        ACTIVITY["phase"] = "idle"
+    stats = dict(stats, thinking=side if think else "")
     # Some Ollama versions return the structured answer in the "thinking" field for thinking-capable
-    # models when thinking is switched off, so both fields are tried.
-    for candidate in (text, side):
+    # models when thinking is switched off, so both fields are tried (never the reasoning itself).
+    for candidate in ((text,) if think else (text, side)):
         try:
             return json.loads(candidate), stats
         except json.JSONDecodeError:
@@ -383,12 +412,25 @@ def _entity(name):
     return re.sub(r"[^a-z0-9]+", " ", _COMPANY_WORD.sub(" ", str(name or "").lower())).strip()
 
 
-def same_entity(a, b):
-    """True unless the two names clearly belong to different companies."""
-    na, nb = _entity(a), _entity(b)
-    if not na or not nb or na in nb or nb in na:
+_JO_WORD = re.compile(r"\b(kso|jo|jv|konsorsium|consortium)\b", re.I)
+
+
+def same_entity(holder, bidder):
+    """True unless the holder clearly is not the bidder nor one of its joint-operation (KSO) partners.
+
+    A KSO bidder's name lists every partner ("KSO PT A - SHENZEN UNI-MEDIKA ... - PT B"), and the same
+    company is often spelled differently in its own documents ("Shenzhen Uni-Medica"). So the holder
+    counts as part of the bidder when nearly every word of its name has a close match in the bidder's name.
+    """
+    na, nb = _entity(holder), _entity(_JO_WORD.sub(" ", str(bidder or "")))
+    if not na or not nb or f" {na} " in f" {nb} " or f" {nb} " in f" {na} ":   # whole words only
         return True
-    return difflib.SequenceMatcher(None, na, nb).ratio() >= 0.75
+    if difflib.SequenceMatcher(None, na, nb).ratio() >= 0.75:
+        return True
+    words = [w for w in na.split() if len(w) >= 3]
+    pool = nb.split()
+    hits = sum(1 for w in words if any(w == p or difflib.SequenceMatcher(None, w, p).ratio() >= 0.8 for p in pool))
+    return len(words) >= 2 and hits >= 0.75 * len(words)
 
 
 def finalize(raw, item, docs, excerpts, today=None, bidder=""):

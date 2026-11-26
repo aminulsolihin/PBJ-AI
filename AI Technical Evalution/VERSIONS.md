@@ -42,7 +42,8 @@ The `name:` inside each file is unchanged, for example `evaluate-tech-spec-v27`.
 | [4.1.0](evaluate-tech-spec_v4.1.0_SKILL.md) | v24 | minor | Undated AI headers; Indonesian in blue; numbered "file name - Google Drive link" attached-document list. |
 | [4.2.0](evaluate-tech-spec_v4.2.0_SKILL.md) | v25 | minor | Per-bidder AMPC sheets without title rows and with a PC Assessment column; compiled AMPC sheet. |
 | [4.3.0](evaluate-tech-spec_v4.3.0_SKILL.md) | v26 | minor | Exports the AMPC and bidder clarification files to the workbook's Drive folder, byte-verified; `move` removes the sheets. |
-| [4.4.0](evaluate-tech-spec_v4.4.0_SKILL.md) | v27 | minor | Formatting rebuilt and checked before upload; AMPC sheets follow the AMPC Technical Clarification template (A–I). **Current.** |
+| [4.4.0](evaluate-tech-spec_v4.4.0_SKILL.md) | v27 | minor | Formatting rebuilt and checked before upload; AMPC sheets follow the AMPC Technical Clarification template (A–I). |
+| [4.5.0](evaluate-tech-spec_v4.5.0_SKILL.md) | v28 | minor | AMPC and bidder clarification files are exported automatically after every run that builds or syncs clarification sheets; same-day files replaced; `no export` opts out. **Current.** |
 
 ## Adding a new version
 

@@ -20,6 +20,11 @@
     <span id="l-excel" class="light">Excel</span>
   </div>
   <div id="banner" class="banner" hidden></div>
+  <div id="busy" class="busy" hidden role="status" aria-live="polite">
+    <div class="busy-top"><span class="spinner" aria-hidden="true"></span><b id="busy-title">Evaluating…</b><span id="busy-clock" class="busy-clock"></span></div>
+    <div id="busy-step" class="busy-step"></div>
+    <div id="busy-pulse" class="busy-pulse"></div>
+  </div>
 </header>
 
 <main>
@@ -85,14 +90,14 @@
       <label>Local model
         <select id="s-model"></select>
       </label>
-      <label class="check"><input id="s-expand" type="checkbox"> Let the model suggest search words for each requirement (better matching; slower the first time)</label>
-      <label>Document text given to the model per requirement
+      <label>Document text read per requirement
         <select id="s-chars">
-          <option value="5000">Short (faster)</option>
-          <option value="9000">Normal</option>
-          <option value="14000">Long (slower, needs more memory)</option>
+          <option value="12000">Less (faster)</option>
+          <option value="18000">Normal</option>
+          <option value="24000">More (slower, needs more memory)</option>
         </select>
       </label>
+      <p class="hint">Every finding is checked against the documents: each one must quote the page it relies on, or the row is marked for clarification.</p>
       <p class="hint"><a href="help.html" target="_blank">How this works</a></p>
     </details>
   </section>
